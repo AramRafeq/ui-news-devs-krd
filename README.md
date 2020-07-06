@@ -1,2 +1,1 @@
-# ui-news-devs-krd
-React UI Project For news.devs.krd
+NextJs/React UI for news.devs.krd

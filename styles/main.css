@@ -1,0 +1,43 @@
+body{
+    font-family: 'main-font';
+    background: white;
+}
+.header-txt{
+    text-align: center;
+}
+.profile-setting-row{
+    margin-bottom: 5px;
+}
+.profile-setting-row:hover{
+    cursor: pointer;
+}
+.profile-setting-row:hover span{
+    color: #e45858;
+    cursor: pointer;
+}
+.profile-setting-row:hover button{
+    background: #e45858 !important;
+    color: white !important;
+}
+.profile-setting-row:hover button *{
+    color: white !important;
+}
+
+.search-input *, .search-input{
+    background: #f7f7f6;
+    border-radius: 25px;
+    border:none;
+}
+
+/* For demo */
+.ant-carousel .slick-slide {
+    text-align: center;
+    height: 160px;
+    line-height: 160px;
+    background: #364d79;
+    overflow: hidden;
+  }
+  
+  .ant-carousel .slick-slide h3 {
+    color: #fff;
+  }

@@ -1,0 +1,5 @@
+@font-face {
+    font-family: 'main-font';
+    src:  url('/Rabar_008.ttf')  format('truetype'), /* Safari, Android, iOS */;
+    font-display: swap;
+}
