@@ -92,14 +92,42 @@ class UI extends React.Component {
         {/* Bellow Is The Content */}
         <Row justify="center" style={{ minHeight: '94vh', marginTop: 50 }}>
           <Col span={4}>
-            {/* <h1>sidebar haha</h1> */}
+            <Row className="navlink-row" gutter={(30)}>
+              <Col span={4}>
+                <Button
+                  icon={<SettingOutlined />}
+                  size="middle"
+                  style={{
+                    border: 'none', borderRadius: 7, background: '#f7f7f6', color: '#878787',
+                  }}
+                />
+              </Col>
+              <Col span={20}>
+                <h2>ماڵه‌وه‌</h2>
+              </Col>
+            </Row>
+            <Row className="navlink-row" gutter={(30)}>
+              <Col span={4}>
+                <Button
+                  icon={<SettingOutlined />}
+                  size="middle"
+                  style={{
+                    border: 'none', borderRadius: 7, background: '#f7f7f6', color: '#878787',
+                  }}
+                />
+              </Col>
+              <Col span={20}>
+                <h2>ماڵه‌وه‌</h2>
+              </Col>
+            </Row>
           </Col>
           <Col span={16} style={{ background: '#f7f7f6', padding: 10, borderRadius: 7 }}>
             <Carousel dots={{ className: 'slider-controller-container' }}>
               {data.map((d) => (
                 <div key={d.img}>
                   {/* <img src={d.img} style={{ width: '100%' }} /> */}
-                  <div key={d.img} className="slide-mask" />
+                  <div key={d.img} className="inner-slide-mask" />
+
                   <div style={{
                     borderRadius: 7,
                     height: 450,
