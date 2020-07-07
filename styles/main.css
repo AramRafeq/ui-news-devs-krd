@@ -1,9 +1,10 @@
 body{
-    font-family: 'main-font';
+    /* font-family: 'main-font'; */
     background: white;
 }
 .header-txt{
     text-align: center;
+    font-family: 'main-font' !important;
 }
 .profile-setting-row{
     margin-bottom: 5px;
@@ -44,10 +45,10 @@ body{
     /* background: red; */
     /* opacity: 0.5; */
     border-radius: 7px !important;
-    top: -7px !important;
+    top: -184px !important;
     background-image: linear-gradient(to bottom, transparent,
     black 144%);
-    opacity: 0.5;
+    opacity: 0.9;
 }
 
 

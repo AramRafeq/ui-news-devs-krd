@@ -1,11 +1,7 @@
 @font-face {
     font-family: 'main-font';
-    src:  url('../public/Rabar_008.ttf')  format('truetype'), /* Safari, Android, iOS */;
-    /* font-display: swap; */
+    src:  url('../public/Rabar_008.ttf')  format('truetype');
 }
-*{
-    font-family: 'main-font' !important;
-}
-body{
-    background: red !important;
+h2, .header-txt{
+    font-family: 'main-font';
 }
