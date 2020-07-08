@@ -1,12 +1,14 @@
 import React from 'react';
 import {
   Row, Col, Avatar, Popover, Button, Input,
-  Carousel, Typography,
+  Carousel,
 } from 'antd';
 import {
   UserOutlined, SettingOutlined, ExportOutlined, SearchOutlined,
+  HomeOutlined, PlusOutlined, GithubOutlined, CodeOutlined, ExclamationCircleOutlined,
 } from '@ant-design/icons';
 import Slide from '../components/Slide';
+import PostCard from '../components/PostCard';
 
 class UI extends React.Component {
   render() {
@@ -94,81 +96,105 @@ class UI extends React.Component {
           </Col>
         </Row>
         {/* Bellow Is The Content */}
-        <Row justify="center" style={{ minHeight: '94vh', marginTop: 50 }}>
-          <Col span={4}>
+
+        <Row justify="center" style={{ minHeight: '94vh', paddingTop: 50 }}>
+          <Col span={4} style={{ paddingTop: 100 }}>
             <Row className="navlink-row" gutter={(30)}>
-              <Col span={4}>
-                <Button
-                  icon={<SettingOutlined />}
-                  size="middle"
-                  style={{
-                    border: 'none', borderRadius: 7, background: '#f7f7f6', color: '#878787',
-                  }}
-                />
-              </Col>
-              <Col span={20}>
-                <h2>ماڵه‌وه‌</h2>
+              <Col span={24}>
+                <h2>
+                  <Button
+                    icon={<HomeOutlined />}
+                    size="large"
+                    style={{
+                      border: 'none', borderRadius: 7, background: '#f7f7f6', color: '#878787',
+                    }}
+                  />
+                  <span style={{ marginRight: 15 }}>ماڵه‌وه‌</span>
+                </h2>
               </Col>
             </Row>
             <Row className="navlink-row" gutter={(30)}>
-              <Col span={4}>
-                <Button
-                  icon={<SettingOutlined />}
-                  size="middle"
-                  style={{
-                    border: 'none', borderRadius: 7, background: '#f7f7f6', color: '#878787',
-                  }}
-                />
-              </Col>
-              <Col span={20}>
-                <h2>ماڵه‌وه‌</h2>
+              <Col span={24}>
+                <h2>
+                  <Button
+                    icon={<PlusOutlined />}
+                    size="large"
+                    style={{
+                      border: 'none', borderRadius: 7, background: '#f7f7f6', color: '#878787',
+                    }}
+                  />
+                  <span style={{ marginRight: 15 }}>بنووسە</span>
+                </h2>
               </Col>
             </Row>
+            <Row className="navlink-row" gutter={(30)}>
+              <Col span={24}>
+                <h2>
+                  <Button
+                    icon={<GithubOutlined />}
+                    size="large"
+                    style={{
+                      border: 'none', borderRadius: 7, background: '#f7f7f6', color: '#878787',
+                    }}
+                  />
+                  <span style={{ marginRight: 15 }}>گیتهەب</span>
+                </h2>
+              </Col>
+            </Row>
+            <Row className="navlink-row" gutter={(30)}>
+              <Col span={24}>
+                <h2>
+                  <Button
+                    icon={<CodeOutlined />}
+                    size="large"
+                    style={{
+                      border: 'none', borderRadius: 7, background: '#f7f7f6', color: '#878787',
+                    }}
+                  />
+                  <span style={{ marginRight: 15 }}>بەکارهێنان</span>
+                </h2>
+              </Col>
+            </Row>
+            <Row className="navlink-row" gutter={(30)}>
+              <Col span={24}>
+                <h2>
+                  <Button
+                    icon={<ExclamationCircleOutlined />}
+                    size="large"
+                    style={{
+                      border: 'none', borderRadius: 7, background: '#f7f7f6', color: '#878787',
+                    }}
+                  />
+                  <span style={{ marginRight: 15 }}>دەربارەی ئێمە</span>
+                </h2>
+              </Col>
+            </Row>
+
           </Col>
           <Col span={16} style={{ background: '#f7f7f6', padding: 10, borderRadius: 7 }}>
-            <Carousel dots={{ className: 'slider-controller-container' }}>
-              {data.map((d) => (
-                <div key={d.img}>
-                  {/* <img src={d.img} style={{ width: '100%' }} /> */}
-                  <div key={d.img} className="inner-slide-mask" />
-
-                  <div style={{
-                    borderRadius: 7,
-                    height: 450,
-                    width: '100%',
-                    background: `url(${d.img})`,
-                    backgroundSize: 'cover',
-                    zIndex: 1,
-                    position: 'relative',
-                  }}
-                  />
-                  <h2 style={{
-                    textAlign: 'right',
-                    position: 'relative',
-                    marginTop: -70,
-                    zIndex: 3,
-                    color: 'white',
-                    padding: 20,
-                    bottom: 150,
-                  }}
-                  >
-                    {d.title}
-                  </h2>
-                  <p style={{
-                    position: 'relative',
-                    top: -180,
-                    zIndex: 33,
-                    padding: 20,
-                    color: 'white',
-                    fontSize: 18,
-                    textAlign: 'right',
-                  }}
-                  >
-                    {d.desc}
-                  </p>
-                </div>
-              ))}
-            </Carousel>
+            <Row>
+              <Col span={24}>
+                <Carousel dots={{ className: 'slider-controller-container' }}>
+                  {data.map((d) => (
+                    <Slide data={d} />
+                  ))}
+                </Carousel>
+              </Col>
+            </Row>
+            <Row gutter={(15)}>
+              <Col span={12}>
+                <PostCard data={data[0]} />
+              </Col>
+              <Col span={12}>
+                <PostCard data={data[1]} />
+              </Col>
+              <Col span={12}>
+                <PostCard data={data[2]} />
+              </Col>
+              <Col span={12}>
+                <PostCard data={data[3]} />
+              </Col>
+            </Row>
           </Col>
           <Col span={4}>
             {/* <h1>Search</h1> */}

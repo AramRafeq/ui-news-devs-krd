@@ -1,7 +1,14 @@
 @font-face {
     font-family: 'main-font';
-    src:  url('../public/Rabar_008.ttf')  format('truetype');
+    src:  url('../public/Rabar_014.ttf')  format('truetype');
 }
-h2, .header-txt{
+@font-face {
+    font-family: 'content-font';
+    src:  url('../public/Rabar_005.ttf')  format('truetype');
+}
+h2, .header-txt, h1{
     font-family: 'main-font';
+}
+span, p{
+    font-family: 'content-font';
 }
