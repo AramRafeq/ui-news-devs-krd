@@ -181,7 +181,7 @@ class UI extends React.Component {
                 </Carousel>
               </Col>
             </Row>
-            <Row gutter={(15)}>
+            <Row style={{ marginTop: 10 }} gutter={[10, 10]}>
               <Col span={12}>
                 <PostCard data={data[0]} />
               </Col>

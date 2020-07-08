@@ -6,9 +6,9 @@
     font-family: 'content-font';
     src:  url('../public/Rabar_005.ttf')  format('truetype');
 }
-h2, .header-txt, h1{
+h2, .header-txt, h1, .ant-card-meta-title{
     font-family: 'main-font';
 }
-span, p{
+span, p, .ant-card-meta-description{
     font-family: 'content-font';
 }
