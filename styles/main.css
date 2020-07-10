@@ -26,7 +26,7 @@ body{
 
 .search-input *, .search-input{
     background: #f7f7f6;
-    border-radius: 25px;
+    border-radius: 5px;
     border:none;
 }
 
@@ -55,4 +55,27 @@ body{
 }
 .navlink-row:hover button *{
     color: white !important;
+}
+
+.sidebar-card-header{
+    background: #2b2c34;
+    color: white;
+    padding: 7px;
+    border-radius: 7px;
+    position: absolute;
+    top: -20px;
+    right: 10px;
+    font-size: 15px;
+}
+.sidebar-tag{
+    margin-right: 0;
+    margin-left: 8px;
+    direction: rtl;
+    text-align: right;
+    padding: 4px;
+    background: white;
+    border: none;
+    font-size: 14px;
+    margin: 3px;
+    box-shadow: 1px 2px 4px #e4e4e4;
 }

@@ -1,7 +1,8 @@
 import React from 'react';
 import {
   Row, Col, Avatar, Popover, Button, Input,
-  Carousel,
+  Carousel, Card,
+  List, Tag, Modal, Form,
 } from 'antd';
 import {
   UserOutlined, SettingOutlined, ExportOutlined, SearchOutlined,
@@ -68,6 +69,37 @@ class UI extends React.Component {
 
     return (
       <div style={{ padding: 40 }}>
+        {/* Modals Section */}
+        <style>
+          {`
+          .ant-form-item-label{
+            background: #ffffff;
+            width: 20%;
+            text-align: center !important;
+            bottom: -10px;
+            z-index: 900;
+            right: 15px;
+            padding: 0 !important;
+          }
+        `}
+
+        </style>
+        <Modal
+          title="چوونه‌ژووره‌وه‌"
+          visible
+          centered
+          footer={null}
+        >
+          <Form layout="vertical">
+            <Form.Item label="ناوی به‌كارهێنه‌ر">
+              <Input style={{ borderRadius: 6 }} />
+            </Form.Item>
+            <Form.Item label="تێپه‌ره‌ وشه‌">
+              <Input style={{ borderRadius: 6 }} />
+            </Form.Item>
+          </Form>
+        </Modal>
+        {/* End Of Modals Section */}
         <Row justify="center" gutter={(25)}>
           <Col span={6}>
             <Popover placement="bottomRight" content={profileDropdownContent} trigger="hover">
@@ -76,7 +108,7 @@ class UI extends React.Component {
           </Col>
           <Col span={12}>
             <h1 className="header-txt">
-              <span>ناوەندی گەشەپێدەران</span>
+              <span>دواین هه‌واڵی ته‌كنه‌لۆجی</span>
               <span style={{
                 backgroundColor: '#2b2c34',
                 margin: 15,
@@ -86,7 +118,7 @@ class UI extends React.Component {
                 borderRadius: 7,
               }}
               >
-                هەواڵەکان
+                ناوه‌ندی گه‌شه‌پێده‌ران
               </span>
             </h1>
           </Col>
@@ -171,7 +203,7 @@ class UI extends React.Component {
             </Row>
 
           </Col>
-          <Col span={16} style={{ background: '#f7f7f6', padding: 10, borderRadius: 7 }}>
+          <Col span={15} style={{ background: '#f7f7f6', padding: 10, borderRadius: 7 }}>
             <Row>
               <Col span={24}>
                 <Carousel dots={{ className: 'slider-controller-container' }}>
@@ -182,22 +214,94 @@ class UI extends React.Component {
               </Col>
             </Row>
             <Row style={{ marginTop: 10 }} gutter={[10, 10]}>
-              <Col span={12}>
-                <PostCard data={data[0]} />
-              </Col>
-              <Col span={12}>
-                <PostCard data={data[1]} />
-              </Col>
-              <Col span={12}>
-                <PostCard data={data[2]} />
-              </Col>
-              <Col span={12}>
-                <PostCard data={data[3]} />
-              </Col>
+              {data.map((d) => (
+                <Col span={12}>
+                  <PostCard data={d} />
+                </Col>
+              ))}
             </Row>
           </Col>
-          <Col span={4}>
-            {/* <h1>Search</h1> */}
+
+          {/* left sidebar content is here */}
+          <Col span={5}>
+            <style>
+              {`
+              .ant-card-head-title{
+                font-size: 12px;
+                padding: 14px;
+                height: 100%;
+                width: 100%;
+              }
+              .ant-card-head-wrapper{
+                margin: 0;
+                height: 100%;
+              }
+              .ant-list-item-meta-content{
+                padding-top: 6px;
+              }
+              .ant-list-item-meta-avatar{
+                margin-left: 9px !important;
+              }
+              `}
+
+            </style>
+            <Row style={{ padding: 10, paddingTop: 30 }}>
+              <Col span={24}>
+                <Card
+                  // title="به‌ناوبانگترین لایه‌نه‌كان"
+                  bordered={false}
+                  bodyStyle={{
+                    borderRadius: 7,
+                  }}
+                  style={{ background: '#f7f7f6', width: '100%' }}
+                >
+                  <span className="sidebar-card-header">به‌ناوبانگترین لایه‌نه‌كان</span>
+                  <List itemLayout="horizontal">
+                    <List.Item>
+                      <List.Item.Meta
+                        avatar={<Avatar style={{ border: '2px solid rgb(182, 182, 182)' }} size={40} src="https://devstree.io/wp-content/uploads/2018/10/black.png" />}
+                        title={<a href="https://ant.design">دره‌ختی گه‌شه‌پێده‌ران</a>}
+                      />
+                    </List.Item>
+                    <List.Item>
+                      <List.Item.Meta
+                        avatar={<Avatar style={{ border: '2px solid rgb(182, 182, 182)' }} size={40} src="https://kitn.net/wp-content/uploads/2019/10/kk-1.jpg" />}
+                        title={<a href="https://ant.design"> ته‌كنه‌لۆجیای زانیاری كوردی</a>}
+                      />
+                    </List.Item>
+                    <List.Item>
+                      <List.Item.Meta
+                        avatar={<Avatar style={{ border: '2px solid rgb(182, 182, 182)' }} size={40} src="https://chawg.org/blog/wp-content/uploads/2018/09/cropped-LOGO_2018_WIKI_PODCAST_2-2.png" />}
+                        title={<a href="https://ant.design"> چاوگ</a>}
+                      />
+                    </List.Item>
+
+                  </List>
+                </Card>
+              </Col>
+            </Row>
+
+            <Row style={{ padding: 10, paddingTop: 30 }}>
+              <Col span={24}>
+                <Card
+                  bordered={false}
+                  bodyStyle={{
+                    borderRadius: 7,
+                  }}
+                  style={{ background: '#f7f7f6', width: '100%' }}
+                >
+                  <span className="sidebar-card-header">تاگه‌كان</span>
+                  <Tag className="sidebar-tag">یاریه‌ ئه‌لیكترۆنیه‌كان</Tag>
+                  <Tag className="sidebar-tag">كۆدنووسین</Tag>
+                  <Tag className="sidebar-tag">مۆبایل</Tag>
+                  <Tag className="sidebar-tag">پۆدكاس</Tag>
+                  <Tag className="sidebar-tag">دواین داهێنان</Tag>
+                  <Tag className="sidebar-tag">پله‌یسته‌یشن</Tag>
+                  <Tag className="sidebar-tag">هه‌ڵه‌</Tag>
+                  <Tag className="sidebar-tag">وینه‌</Tag>
+                </Card>
+              </Col>
+            </Row>
           </Col>
         </Row>
       </div>
