@@ -2,12 +2,14 @@ import React from 'react';
 import moment from 'moment';
 
 import {
-  Modal, Form, Input, Button,
+  Modal, Input, Button,
   Popover, Avatar, Row, Col,
 } from 'antd';
 import {
   ExportOutlined, SettingOutlined, UserOutlined, SearchOutlined,
 } from '@ant-design/icons';
+import Login from './Login';
+import AuthGuard from './AuthGuard';
 
 moment.locale('ku');
 class Header extends React.Component {
@@ -52,17 +54,18 @@ class Header extends React.Component {
           footer={null}
           width={350}
         >
-          <Form layout="vertical">
-            <Form.Item label="ناوی به‌كارهێنه‌ر">
-              <Input style={{ borderRadius: 6 }} />
-            </Form.Item>
-            <Form.Item label="تێپه‌ره‌ وشه‌">
-              <Input style={{ borderRadius: 6 }} />
-            </Form.Item>
-            <Form.Item>
-              <Button type="primary">چوونه‌ژووره‌وه‌</Button>
-            </Form.Item>
-          </Form>
+          <Login />
+        </Modal>
+        <Modal
+          title="test"
+          visible
+          centered
+          footer={null}
+          width={350}
+        >
+          <AuthGuard>
+            <h1>Hello world</h1>
+          </AuthGuard>
         </Modal>
         {/* End Of Modals Section */}
         <Row justify="center" gutter={(25)}>
@@ -91,7 +94,6 @@ class Header extends React.Component {
           </Col>
           <Col span={6} align="center">
             <Input placeholder="بگەرێ بۆ بابەت" prefix={<Button icon={<SearchOutlined />} />} className="search-input" />
-
           </Col>
         </Row>
 
