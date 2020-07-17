@@ -41,7 +41,7 @@ class Header extends React.Component {
               bodyStyle={{
                 borderRadius: 7,
               }}
-              style={{ background: '#f7f7f6', width: '100%' }}
+              style={{ background: '#fbfbfb', width: '100%' }}
             >
               <span className="sidebar-card-header">به‌ناوبانگترین لایه‌نه‌كان</span>
               <List itemLayout="horizontal">
@@ -76,7 +76,7 @@ class Header extends React.Component {
               bodyStyle={{
                 borderRadius: 7,
               }}
-              style={{ background: '#f7f7f6', width: '100%' }}
+              style={{ background: '#fbfbfb', width: '100%' }}
             >
               <span className="sidebar-card-header">تاگه‌كان</span>
               <Tag className="sidebar-tag">یاریه‌ ئه‌لیكترۆنیه‌كان</Tag>

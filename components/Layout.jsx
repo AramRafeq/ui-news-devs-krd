@@ -1,33 +1,62 @@
 import React from 'react';
 import moment from 'moment';
+import Router from 'next/router';
 
 import {
   Button,
   Row, Col,
+  Modal,
 } from 'antd';
 import {
   HomeOutlined, PlusOutlined, GithubOutlined, CodeOutlined, ExclamationCircleOutlined,
 } from '@ant-design/icons';
 import Header from './Header';
 import LeftSidebar from './LeftSidebar';
+import NewPost from './NewPost';
 
 moment.locale('ku');
 class Layout extends React.Component {
+  constructor(props) {
+    super(props);
+    this.initialState = () => ({
+      newPostModalVisible: false,
+    });
+    this.state = this.initialState();
+
+    this.toggleNewModal = () => this.setState((prev) => ({
+      newPostModalVisible: !prev.newPostModalVisible,
+    }));
+    this.goHome = () => {
+      Router.push('/');
+    };
+  }
+
   render() {
-    const { children, hideLeftSidebar } = this.props;
+    const { children, hideLeftSidebar, containerStyle } = this.props;
+    const { newPostModalVisible } = this.state;
     return (
       <>
+        <Modal
+          visible={newPostModalVisible}
+          centered
+          width={650}
+          footer={null}
+          title="به‌سته‌ری نوێ"
+          onCancel={this.toggleNewModal}
+        >
+          <NewPost />
+        </Modal>
         <Header />
         <Row justify="center" style={{ minHeight: '94vh', paddingTop: 50 }}>
           <Col span={4} style={{ paddingTop: 100 }}>
             <Row className="navlink-row" gutter={(30)}>
-              <Col span={24}>
+              <Col span={24} onClick={this.goHome}>
                 <h2>
                   <Button
                     icon={<HomeOutlined />}
                     size="large"
                     style={{
-                      border: 'none', borderRadius: 7, background: '#f7f7f6', color: '#878787',
+                      border: 'none', borderRadius: 7, background: '#fbfbfb', color: '#878787',
                     }}
                   />
                   <span style={{ marginRight: 15 }}>ماڵه‌وه‌</span>
@@ -35,13 +64,13 @@ class Layout extends React.Component {
               </Col>
             </Row>
             <Row className="navlink-row" gutter={(30)}>
-              <Col span={24}>
+              <Col span={24} onClick={this.toggleNewModal}>
                 <h2>
                   <Button
                     icon={<PlusOutlined />}
                     size="large"
                     style={{
-                      border: 'none', borderRadius: 7, background: '#f7f7f6', color: '#878787',
+                      border: 'none', borderRadius: 7, background: '#fbfbfb', color: '#878787',
                     }}
                   />
                   <span style={{ marginRight: 15 }}>بنووسە</span>
@@ -55,7 +84,7 @@ class Layout extends React.Component {
                     icon={<GithubOutlined />}
                     size="large"
                     style={{
-                      border: 'none', borderRadius: 7, background: '#f7f7f6', color: '#878787',
+                      border: 'none', borderRadius: 7, background: '#fbfbfb', color: '#878787',
                     }}
                   />
                   <span style={{ marginRight: 15 }}>گیتهەب</span>
@@ -69,7 +98,7 @@ class Layout extends React.Component {
                     icon={<CodeOutlined />}
                     size="large"
                     style={{
-                      border: 'none', borderRadius: 7, background: '#f7f7f6', color: '#878787',
+                      border: 'none', borderRadius: 7, background: '#fbfbfb', color: '#878787',
                     }}
                   />
                   <span style={{ marginRight: 15 }}>بەکارهێنان</span>
@@ -83,7 +112,7 @@ class Layout extends React.Component {
                     icon={<ExclamationCircleOutlined />}
                     size="large"
                     style={{
-                      border: 'none', borderRadius: 7, background: '#f7f7f6', color: '#878787',
+                      border: 'none', borderRadius: 7, background: '#fbfbfb', color: '#878787',
                     }}
                   />
                   <span style={{ marginRight: 15 }}>دەربارەی ئێمە</span>
@@ -92,7 +121,12 @@ class Layout extends React.Component {
             </Row>
 
           </Col>
-          <Col span={(!hideLeftSidebar) ? 15 : 20} style={{ background: '#f7f7f6', padding: 10, borderRadius: 7 }}>
+          <Col
+            span={(!hideLeftSidebar) ? 15 : 20}
+            style={{
+              background: '#fbfbfb', padding: 10, borderRadius: 7, ...containerStyle,
+            }}
+          >
             {children}
           </Col>
 

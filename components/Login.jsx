@@ -26,7 +26,7 @@ class Login extends React.Component {
             <Input style={{ borderRadius: 6 }} />
           </Form.Item>
           <Form.Item>
-            <Button type="primary">چوونه‌ژووره‌وه‌</Button>
+            <Button style={{ background: '#2b2c34' }} type="primary">چوونه‌ژووره‌وه‌</Button>
           </Form.Item>
         </Form>
       </>

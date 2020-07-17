@@ -9,9 +9,9 @@ import {
   ExportOutlined, SettingOutlined, UserOutlined, SearchOutlined,
 } from '@ant-design/icons';
 import Login from './Login';
-import AuthGuard from './AuthGuard';
 
 moment.locale('ku');
+
 class Header extends React.Component {
   render() {
     const profileDropdownContent = (
@@ -22,7 +22,7 @@ class Header extends React.Component {
               icon={<SettingOutlined />}
               size="middle"
               style={{
-                border: 'none', borderRadius: 7, background: '#f7f7f6', color: '#878787',
+                border: 'none', borderRadius: 7, background: '#fbfbfb', color: '#878787',
               }}
             />
               &nbsp;&nbsp;
@@ -35,7 +35,7 @@ class Header extends React.Component {
               icon={<ExportOutlined />}
               size="middle"
               style={{
-                border: 'none', borderRadius: 7, background: '#f7f7f6', color: '#878787',
+                border: 'none', borderRadius: 7, background: '#fbfbfb', color: '#878787',
               }}
             />
               &nbsp;&nbsp;
@@ -55,17 +55,6 @@ class Header extends React.Component {
           width={350}
         >
           <Login />
-        </Modal>
-        <Modal
-          title="test"
-          visible
-          centered
-          footer={null}
-          width={350}
-        >
-          <AuthGuard>
-            <h1>Hello world</h1>
-          </AuthGuard>
         </Modal>
         {/* End Of Modals Section */}
         <Row justify="center" gutter={(25)}>

@@ -7,7 +7,7 @@
     src:  url('../public/Rabar_005.ttf')  format('truetype');
 }
 h2, .header-txt, h1, .ant-card-meta-title, .ant-card-head-title, .ant-list-item-meta-content
-, .ant-modal-title, .ant-form-item-label{
+, .ant-modal-title, .ant-form-item-label, input, textarea{
     font-family: 'main-font';
 }
 span, p, .ant-card-meta-description{

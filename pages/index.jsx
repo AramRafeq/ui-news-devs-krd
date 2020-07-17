@@ -1,114 +1,46 @@
 import React from 'react';
-import {
-  Form, Select, InputNumber, Switch, Slider, Button,
-} from 'antd';
+import moment from 'moment';
 
-// Custom DatePicker that uses Day.js instead of Moment.js
+import PostGrid from '../components/PostGrid';
+import Carousel from '../components/Carousel';
+import Layout from '../components/Layout';
 
-import { SmileFilled } from '@ant-design/icons';
+moment.locale('ku');
 
-import Link from 'next/link';
-import DatePicker from '../components/DatePicker';
-import AuthGuard from '../components/AuthGuard';
+class Index extends React.Component {
+  render() {
+    const data = [
+      {
+        img: 'https://www.sentry.dev/_assets2/static/index-header-lg-6a2edfb1d9841893801fd45ce890f904.jpg',
+        title: 'هەڵەی کۆدەکانت بدۆزەوە بە باکارهێنانی sentry.io',
+        desc: 'سڵاو لەپاش دابڕانێکی هێجگار زۆر، من سامڕەند حاجی سەرنوسەری ماڵپەری درەختی گەشەپێدەران و لێکۆڵەرەوەی بواری ئاسایشی زانیاریەکان لەگاڵتاندام بۆ زنجیرەیەک بابەت کە تایبەتە بە پاراستنی زانیاریەکان هەرچەندە چەندین بابەتی سەربەخۆ لەسەر پاراستنی زانیاریەکان لە ماڵپەرەکەماندا هەیە، بەڵام دەمانەوەێت هەمووی لە چەند زنجیرەیەکدا باس بکەینەوە. لە ماڵپەرەکەمانەوە بینەربە.',
+      },
+      {
+        title: 'مانای کۆد نوسین بزانە بۆ ئەوەی ببیت بە کەسێکی سەرکەوتوو',
+        img: 'https://devstree.io/wp-content/uploads/2019/10/1_zTdZMxbTkVdXCOoZlXLnsg.png',
+        desc: 'وەك ئاگادارین فلەتەر ئێستا بۆتە یەكەێك لە بەناوبانگترین تەكنەلۆجیای دروست كردنی ئاپی مۆبایل و ئێمە ڵەم بابەتەیا فێرتان ئەكەین چۆن لەسەر كۆمپیوتەرەكانمان جێگیری بكەین و كاری پێبكەین.',
+      },
+      {
+        title: 'فڵەتەر فێرببە دامەزراندنی بۆ یەکەم جار',
+        img: 'https://codete.com/blog/wp-content/uploads/2018/07/cover-flutter-blog.jpg',
+        desc: 'ئێمە چەند پڕۆژەیەکەمان هەیە و پڕۆژەکانیش هەمووی سەرچاوەکراوەن. بۆ نموونە ناوی کوردی و پێرمادیلیت. بەڵام ئەوجارە پلانمان وایە کە جگە لەوەی کۆدەکەی سەرچاوەکراوەبێت، تەواوی پڕۆسەی درووست کردنەکەشی ڕیکۆرد بکەین و لە وێبسایتی درەختی گەشەپێدەران بڵاویکەینەوە.',
+      },
+      {
+        title: 'پلەیس هۆڵدەرەکە',
+        img: 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png',
+        desc: 'هیچ كاتێك هه‌بووه‌ پرۆگرامێك نوسیوه‌و له‌ سه‌ر سێرڤه‌ر كێشه‌ی هه‌بووبێت و نه‌تزانیبێت چیه‌ یان كاتێك له‌سه‌ر كۆمپیته‌ری كه‌سێك هه‌ڵه‌یه‌ك رووده‌ده‌ات نازانیت بۆچی ئه‌مه‌ رویداوه‌‌ زۆر به‌سوود ده‌بێت ئه‌گه‌ر بێتو هه‌ڵه‌یه‌ك رویدات یه‌كسه‌ر پێیبزانیت رێك وه‌ك ئه‌وه‌ی خۆت كۆده‌كه‌ت debug بكه‌یت، له‌ به‌ختی ئێمه‌ sentry.io  رێك ئه‌و كاره‌ ده‌كات',
+      },
+    ];
 
-const FormItem = Form.Item;
-const { Option } = Select;
+    return (
+      <div style={{ padding: 40 }}>
+        <Layout>
+          <Carousel data={data} />
+          <PostGrid data={data} />
+        </Layout>
 
-const content = {
-  marginTop: '100px',
-};
-
-export default function Home() {
-  return (
-    <AuthGuard>
-      {' '}
-      <div style={content}>
-        <div className="text-center mb-5">
-          <Link href="#">
-            <a className="logo mr-0">
-              <SmileFilled size={48} strokeWidth={1} />
-            </a>
-          </Link>
-
-          <p className="mb-0 mt-3 text-disabled">
-            Welcome to the world !
-          </p>
-        </div>
-        <div>
-          <Form layout="horizontal">
-            <FormItem
-              label="Input Number"
-              labelCol={{ span: 8 }}
-              wrapperCol={{ span: 8 }}
-            >
-              <InputNumber
-                size="large"
-                min={1}
-                max={10}
-                style={{ width: 100 }}
-                defaultValue={3}
-                name="inputNumber"
-              />
-            </FormItem>
-
-            <FormItem
-              label="Switch"
-              labelCol={{ span: 8 }}
-              wrapperCol={{ span: 8 }}
-            >
-              <Switch defaultChecked name="switch" />
-            </FormItem>
-
-            <FormItem
-              label="Slider"
-              labelCol={{ span: 8 }}
-              wrapperCol={{ span: 8 }}
-            >
-              <Slider defaultValue={70} />
-            </FormItem>
-
-            <FormItem
-              label="Select"
-              labelCol={{ span: 8 }}
-              wrapperCol={{ span: 8 }}
-            >
-              <Select
-                size="large"
-                defaultValue="lucy"
-                style={{ width: 192 }}
-                name="select"
-              >
-                <Option value="jack">jack</Option>
-                <Option value="lucy">lucy</Option>
-                <Option value="disabled" disabled>
-                  disabled
-                </Option>
-                <Option value="yiminghe">yiminghe</Option>
-              </Select>
-            </FormItem>
-
-            <FormItem
-              label="DatePicker"
-              labelCol={{ span: 8 }}
-              wrapperCol={{ span: 8 }}
-            >
-              <DatePicker name="startDate" />
-            </FormItem>
-            <FormItem
-              style={{ marginTop: 48 }}
-              wrapperCol={{ span: 8, offset: 8 }}
-            >
-              <Button size="large" type="primary" htmlType="submit">
-                OK
-              </Button>
-              <Button size="large" style={{ marginLeft: 8 }}>
-                Cancel
-              </Button>
-            </FormItem>
-          </Form>
-        </div>
       </div>
-    </AuthGuard>
-
-  );
+    );
+  }
 }
+export default Index;
