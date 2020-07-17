@@ -6,27 +6,71 @@ import {
   Form, Input, Button,
 } from 'antd';
 
+import superagent from '../helpers/superagent';
+
 moment.locale('ku');
 
 @observer
 @inject('userStore', 'tokenStore')
 class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    // const token = props.tokenStore.value;
+    // superagent.set('authorization', `Bearer ${props.}`);
+    this.initialState = () => ({
+      saving: false,
+    });
+    this.state = this.initialState();
+    this.onFinish = (values) => {
+      this.setState({ saving: true });
+      superagent.post('/auth/login')
+        .send({
+          password: values.password,
+          username: values.username,
+        }).end((err, res) => {
+          this.setState({ saving: false });
+
+          console.log(res);
+        });
+    };
+    this.form = React.createRef();
+  }
+
   render() {
     const { tokenStore, to } = this.props;
+    const { saving } = this.state;
     if (`${tokenStore.value}`.trim() !== '') {
       return to;
     }
     return (
       <>
-        <Form layout="vertical">
-          <Form.Item label="ناوی به‌كارهێنه‌ر">
+        <Form ref={this.form} layout="vertical" onFinish={this.onFinish}>
+          <Form.Item
+            label="ناوی به‌كارهێنه‌ر"
+            name="username"
+            rules={[
+              {
+                required: true,
+                message: 'داواكراوه‌ پێویسته‌ بنوسرێت',
+              },
+            ]}
+          >
             <Input style={{ borderRadius: 6 }} />
           </Form.Item>
-          <Form.Item label="تێپه‌ره‌ وشه‌">
+          <Form.Item
+            label="تێپه‌ره‌ وشه‌"
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: 'داواكراوه‌ پێویسته‌ بنوسرێت',
+              },
+            ]}
+          >
             <Input style={{ borderRadius: 6 }} />
           </Form.Item>
           <Form.Item>
-            <Button style={{ background: '#2b2c34' }} type="primary">چوونه‌ژووره‌وه‌</Button>
+            <Button loading={saving} htmlType="submit" style={{ background: '#2b2c34' }} type="primary">چوونه‌ژووره‌وه‌</Button>
           </Form.Item>
         </Form>
       </>

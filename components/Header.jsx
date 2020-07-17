@@ -6,13 +6,24 @@ import {
   Popover, Avatar, Row, Col,
 } from 'antd';
 import {
-  ExportOutlined, SettingOutlined, UserOutlined, SearchOutlined,
+  ExportOutlined, SettingOutlined, UserOutlined, SearchOutlined, LoginOutlined,
 } from '@ant-design/icons';
 import Login from './Login';
 
 moment.locale('ku');
 
 class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.initialState = () => ({
+      loginModalVisible: true,
+    });
+    this.state = this.initialState();
+    this.toggleLoginModal = () => this.setState((prev) => ({
+      loginModalVisible: !prev.loginModalVisible,
+    }));
+  }
+
   render() {
     const profileDropdownContent = (
       <>
@@ -42,21 +53,35 @@ class Header extends React.Component {
             <span>دەرچوون</span>
           </Col>
         </Row>
+        <Row className="profile-setting-row">
+          <Col span={24} onClick={this.toggleLoginModal}>
+            <Button
+              icon={<LoginOutlined />}
+              size="middle"
+              style={{
+                border: 'none', borderRadius: 7, background: '#fbfbfb', color: '#878787',
+              }}
+            />
+              &nbsp;&nbsp;
+            <span>چوونه‌ژووره‌وه‌</span>
+          </Col>
+        </Row>
       </>
     );
+    const { loginModalVisible } = this.state;
     return (
       <>
-        {/* Modals Section */}
         <Modal
-          title="چوونه‌ژووره‌وه‌"
-          visible={false}
+          visible={loginModalVisible}
           centered
+          width={650}
           footer={null}
-          width={350}
+          title="چوونه‌ژوره‌وه‌"
+          onCancel={this.toggleLoginModal}
         >
           <Login />
         </Modal>
-        {/* End Of Modals Section */}
+
         <Row justify="center" gutter={(25)}>
           <Col span={6}>
             <Popover placement="bottomRight" content={profileDropdownContent} trigger="hover">

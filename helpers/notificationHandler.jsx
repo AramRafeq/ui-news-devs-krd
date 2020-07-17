@@ -7,7 +7,7 @@ export default (err) => {
     const { statusCode, body, statusText } = response;
     if (statusCode === 422) {
       notification.error({
-        message: 'Sorry..',
+        message: 'ببوره‌...',
         description: (
           <ul>
             {body.errors.map((er) => (
@@ -25,15 +25,21 @@ export default (err) => {
       });
     } else if (statusCode === 401) {
       notification.error({
-        message: 'Sorry..',
-        description: statusText,
+        message: 'ببوره‌...',
+        description: response.body.msg || statusText,
+        placement: 'bottomRight',
+      });
+    } else if (statusCode === 404) {
+      notification.error({
+        message: 'ببوره‌...',
+        description: response.body.msg,
         placement: 'bottomRight',
       });
     }
   } else {
     notification.error({
-      message: 'Sorry..',
-      description: 'Server Error',
+      message: 'ببوره‌...',
+      description: 'هه‌ڵه‌یه‌ك له‌ راژه‌ رویدا',
       placement: 'bottomRight',
     });
   }

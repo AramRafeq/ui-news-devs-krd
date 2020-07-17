@@ -38,7 +38,6 @@ class Index extends React.Component {
           <Carousel data={data} />
           <PostGrid data={data} />
         </Layout>
-
       </div>
     );
   }
