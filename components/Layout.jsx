@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import Router from 'next/router';
+import { observer } from 'mobx-react';
 
 import {
   Button,
@@ -15,6 +16,8 @@ import LeftSidebar from './LeftSidebar';
 import NewPost from './NewPost';
 
 moment.locale('ku');
+
+@observer
 class Layout extends React.Component {
   constructor(props) {
     super(props);

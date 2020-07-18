@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import moment from 'moment';
 import { observer, inject } from 'mobx-react';
@@ -10,8 +11,8 @@ import superagent from '../helpers/superagent';
 
 moment.locale('ku');
 
-@observer
 @inject('userStore', 'tokenStore')
+@observer
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -29,18 +30,37 @@ class Login extends React.Component {
           username: values.username,
         }).end((err, res) => {
           this.setState({ saving: false });
-
-          console.log(res);
+          if (!err) {
+            const user = res.body;
+            this.props.tokenStore.value = user.token;
+            this.props.userStore.value = user;
+            try {
+              const { toggleModal } = this.props;
+              toggleModal();
+            } catch (e) {
+            // who cares
+            }
+          }
         });
     };
     this.form = React.createRef();
   }
 
   render() {
-    const { tokenStore, to } = this.props;
+    const { tokenStore, userStore, to } = this.props;
     const { saving } = this.state;
     if (`${tokenStore.value}`.trim() !== '') {
-      return to;
+      if (to) {
+        return to;
+      }
+      return (
+        <h1>
+          به‌خێربێیت
+          {' '}
+          {userStore.value.username}
+          {'...'}
+        </h1>
+      );
     }
     return (
       <>
@@ -74,7 +94,6 @@ class Login extends React.Component {
           </Form.Item>
         </Form>
       </>
-
     );
   }
 }

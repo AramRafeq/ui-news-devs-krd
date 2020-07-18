@@ -1,6 +1,9 @@
 /* eslint-disable max-classes-per-file */
 import { observable } from 'mobx';
+import { useStaticRendering } from 'mobx-react';
 import { persist, create } from 'mobx-persist';
+
+useStaticRendering(typeof window === 'undefined');
 
 class Token {
   @persist @observable value = '';
@@ -21,6 +24,8 @@ class User {
 const userStore = new User();
 const tokenStore = new Token();
 if (process.browser) {
+  window.token = tokenStore;
+
   const hydrate = create({
     storage: localStorage,
     jsonify: true,

@@ -10,12 +10,13 @@ import AuthGuard from './AuthGuard';
 
 moment.locale('ku');
 
-@observer
 @inject('userStore', 'tokenStore')
+@observer
 class NewPost extends React.Component {
   render() {
     return (
-      <>
+      <AuthGuard>
+        {' '}
         <Form layout="vertical">
           <Row gutter={(10)}>
             <Col span={24}>
@@ -47,7 +48,8 @@ class NewPost extends React.Component {
             </Col>
           </Row>
         </Form>
-      </>
+      </AuthGuard>
+
     );
   }
 }
