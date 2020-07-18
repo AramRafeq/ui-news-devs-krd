@@ -72,7 +72,7 @@ class Base64Uploader extends React.Component {
               && this.state.file !== '' ? (
                 <img
                   style={{ maxWidth: '100%' }}
-                  src={`${process.env.REACT_APP_STORAGE_LINK}/${this.props.file}`}
+                  src={`${this.props.file}`}
                 />
                 ) : (
                   <img style={{ maxWidth: '100%' }} src={this.state.base64} />

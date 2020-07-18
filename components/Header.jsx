@@ -8,9 +8,11 @@ import {
   Popover, Avatar, Row, Col,
 } from 'antd';
 import {
-  ExportOutlined, SettingOutlined, UserOutlined, SearchOutlined, LoginOutlined,
+  ExportOutlined, SettingOutlined, UserOutlined, SearchOutlined, LoginOutlined, UserAddOutlined,
 } from '@ant-design/icons';
 import Login from './Login';
+import Registration from './Register';
+import UpdateProfile from './UpdateProfile';
 
 moment.locale('ku');
 
@@ -21,93 +23,142 @@ class Header extends React.Component {
     super(props);
     this.initialState = () => ({
       loginModalVisible: false,
+      registrationModalVisible: false,
+      updateProfileModalVisible: false,
     });
     this.state = this.initialState();
     this.toggleLoginModal = () => this.setState((prev) => ({
       loginModalVisible: !prev.loginModalVisible,
     }));
+    this.toggleRegistrationModal = () => this.setState((prev) => ({
+      registrationModalVisible: !prev.registrationModalVisible,
+    }));
+    this.toggleUpdateProfileModal = () => this.setState((prev) => ({
+      updateProfileModalVisible: !prev.updateProfileModalVisible,
+    }));
     this.logout = () => {
       this.props.userStore.clear();
       this.props.tokenStore.clear();
     };
+    this.loginFunction = () => {};
   }
 
   render() {
     const { tokenStore, userStore } = this.props;
     const profileDropdownContent = (
       <>
-        <Row className="profile-setting-row">
-          <Col span={24}>
-            <Button
-              icon={<SettingOutlined />}
-              size="middle"
-              style={{
-                border: 'none', borderRadius: 7, background: '#fbfbfb', color: '#878787',
-              }}
-            />
-              &nbsp;&nbsp;
-            <span>رێکخستەنکان</span>
-          </Col>
-        </Row>
         {
           (tokenStore.value !== '')
             ? (
-              <Row className="profile-setting-row">
-                <Col span={24} onClick={this.logout}>
-                  <Button
-                    icon={<ExportOutlined />}
-                    size="middle"
-                    style={{
-                      border: 'none', borderRadius: 7, background: '#fbfbfb', color: '#878787',
-                    }}
-                  />
+              <>
+                <Row className="profile-setting-row">
+                  <Col span={24} onClick={this.toggleUpdateProfileModal}>
+                    <Button
+                      icon={<SettingOutlined />}
+                      size="middle"
+                      style={{
+                        border: 'none', borderRadius: 7, background: '#fbfbfb', color: '#878787',
+                      }}
+                    />
+                    &nbsp;&nbsp;
+                    <span>رێکخستەنکان</span>
+                  </Col>
+                </Row>
+                <Row className="profile-setting-row">
+                  <Col span={24} onClick={this.logout}>
+                    <Button
+                      icon={<ExportOutlined />}
+                      size="middle"
+                      style={{
+                        border: 'none', borderRadius: 7, background: '#fbfbfb', color: '#878787',
+                      }}
+                    />
               &nbsp;&nbsp;
-                  <span>دەرچوون</span>
-                </Col>
-              </Row>
+                    <span>دەرچوون</span>
+                  </Col>
+                </Row>
+              </>
             ) : null
         }
         {
           (tokenStore.value === '')
             ? (
-              <Row className="profile-setting-row">
-                <Col span={24} onClick={this.toggleLoginModal}>
-                  <Button
-                    icon={<LoginOutlined />}
-                    size="middle"
-                    style={{
-                      border: 'none', borderRadius: 7, background: '#fbfbfb', color: '#878787',
-                    }}
-                  />
-              &nbsp;&nbsp;
-                  <span>چوونه‌ژووره‌وه‌</span>
-                </Col>
-              </Row>
+              <>
+                <Row className="profile-setting-row">
+                  <Col span={24} onClick={this.toggleRegistrationModal}>
+                    <Button
+                      icon={<UserAddOutlined />}
+                      size="middle"
+                      style={{
+                        border: 'none', borderRadius: 7, background: '#fbfbfb', color: '#878787',
+                      }}
+                    />
+                    &nbsp;&nbsp;
+                    <span>خۆ تۆماركردن</span>
+                  </Col>
+                </Row>
+                <Row className="profile-setting-row">
+                  <Col span={24} onClick={this.toggleLoginModal}>
+                    <Button
+                      icon={<LoginOutlined />}
+                      size="middle"
+                      style={{
+                        border: 'none', borderRadius: 7, background: '#fbfbfb', color: '#878787',
+                      }}
+                    />
+                    &nbsp;&nbsp;
+                    <span>چوونه‌ژووره‌وه‌</span>
+                  </Col>
+                </Row>
+              </>
             ) : null
         }
 
       </>
     );
-    const { loginModalVisible } = this.state;
+    const { loginModalVisible, registrationModalVisible, updateProfileModalVisible } = this.state;
     return (
       <>
         <Modal
           visible={loginModalVisible}
           centered
-          width={650}
+          width={400}
           footer={null}
           title="چوونه‌ژوره‌وه‌"
           onCancel={this.toggleLoginModal}
         >
           <Login
             toggleModal={this.toggleLoginModal}
+            loaded={(loginFunction) => {
+              this.loginFunction = loginFunction;
+            }}
           />
+        </Modal>
+        <Modal
+          visible={registrationModalVisible}
+          centered
+          width={650}
+          footer={null}
+          title="خۆتۆماركردن"
+          onCancel={this.toggleRegistrationModal}
+        >
+          <Registration loginFunction={this.loginFunction} />
+        </Modal>
+        <Modal
+          visible={updateProfileModalVisible}
+          centered
+          width={650}
+          footer={null}
+          title="نوێكردنه‌وه‌ی زانیاریه‌كان"
+          onCancel={this.toggleUpdateProfileModal}
+        >
+          <UpdateProfile />
         </Modal>
 
         <Row justify="center" gutter={(25)}>
           <Col span={6}>
             <Popover placement="bottomRight" content={profileDropdownContent} trigger="hover">
-              <Avatar size={45} icon={tokenStore.value === '' ? <UserOutlined /> : null} src={tokenStore.value !== '' ? userStore.value.profile : null} />
+              <Avatar size={45} icon={tokenStore.value === '' ? <UserOutlined /> : null} src={tokenStore.value !== '' ? `${process.env.NEXT_PUBLIC_AWS_ENDPOINT}/${userStore.value.profile}` : null} />
               &nbsp;&nbsp;&nbsp;&nbsp;
               {
                 (tokenStore.value !== '')

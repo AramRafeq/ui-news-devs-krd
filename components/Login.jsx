@@ -46,6 +46,14 @@ class Login extends React.Component {
     this.form = React.createRef();
   }
 
+  componentDidMount() {
+    try {
+      this.props.loaded(this.onFinish);
+    } catch (e) {
+      // who cares
+    }
+  }
+
   render() {
     const { tokenStore, userStore, to } = this.props;
     const { saving } = this.state;
@@ -87,7 +95,7 @@ class Login extends React.Component {
               },
             ]}
           >
-            <Input style={{ borderRadius: 6 }} />
+            <Input.Password style={{ borderRadius: 6 }} />
           </Form.Item>
           <Form.Item>
             <Button loading={saving} htmlType="submit" style={{ background: '#2b2c34' }} type="primary">چوونه‌ژووره‌وه‌</Button>
