@@ -9,7 +9,35 @@ import {
 
 moment.locale('ku');
 class Header extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.initialState = () => ({});
+    this.state = this.initialState();
+    // this.loadPublishers = () => {
+    //   superagent.post('/auth/login')
+    //     .send({
+    //       password: values.password,
+    //       username: values.username,
+    //     }).end((err, res) => {
+    //       this.setState({ saving: false });
+    //       if (!err) {
+    //         const user = res.body;
+    //         this.props.tokenStore.value = user.token;
+    //         this.props.userStore.value = user;
+    //         try {
+    //           const { toggleModal } = this.props;
+    //           toggleModal();
+    //         } catch (e) {
+    //         // who cares
+    //         }
+    //       }
+    //     });
+    // };
+  }
+
   render() {
+    console.log(this.props.publishers);
     return (
       <>
         <style>

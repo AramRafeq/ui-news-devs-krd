@@ -35,7 +35,9 @@ class Layout extends React.Component {
   }
 
   render() {
-    const { children, hideLeftSidebar, containerStyle } = this.props;
+    const {
+      children, hideLeftSidebar, containerStyle, publishers,
+    } = this.props;
     const { newPostModalVisible } = this.state;
     return (
       <>
@@ -137,7 +139,7 @@ class Layout extends React.Component {
           {
               (!hideLeftSidebar) ? (
                 <Col span={5}>
-                  <LeftSidebar />
+                  <LeftSidebar publishers={publishers} />
                 </Col>
               ) : null
           }

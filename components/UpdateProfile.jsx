@@ -40,7 +40,7 @@ class UpdateProfile extends React.Component {
           this.setState({ saving: false });
           if (!err) {
             this.props.userStore.value = info.body.data;
-            this.setState({ profile: '',original_profile: '',  });
+            this.setState({ profile: '', original_profile: info.body.data.profile });
             notification.success({
               message: 'سەرکەوتوبوو',
               description: 'نوێکردنەوەی پرۆفایلەکەت سەرکەوتوو بوو',

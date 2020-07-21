@@ -1,12 +1,16 @@
 import React from 'react';
 import moment from 'moment';
+import { observer, inject } from 'mobx-react';
 
 import PostGrid from '../components/PostGrid';
 import Carousel from '../components/Carousel';
 import Layout from '../components/Layout';
+import superagent from '../helpers/superagent';
 
 moment.locale('ku');
 
+@inject('userStore', 'tokenStore')
+@observer
 class Index extends React.Component {
   render() {
     const data = [
@@ -31,10 +35,10 @@ class Index extends React.Component {
         desc: 'هیچ كاتێك هه‌بووه‌ پرۆگرامێك نوسیوه‌و له‌ سه‌ر سێرڤه‌ر كێشه‌ی هه‌بووبێت و نه‌تزانیبێت چیه‌ یان كاتێك له‌سه‌ر كۆمپیته‌ری كه‌سێك هه‌ڵه‌یه‌ك رووده‌ده‌ات نازانیت بۆچی ئه‌مه‌ رویداوه‌‌ زۆر به‌سوود ده‌بێت ئه‌گه‌ر بێتو هه‌ڵه‌یه‌ك رویدات یه‌كسه‌ر پێیبزانیت رێك وه‌ك ئه‌وه‌ی خۆت كۆده‌كه‌ت debug بكه‌یت، له‌ به‌ختی ئێمه‌ sentry.io  رێك ئه‌و كاره‌ ده‌كات',
       },
     ];
-
+    const { publishers } = this.props;
     return (
       <div style={{ padding: 40 }}>
-        <Layout>
+        <Layout publishers={publishers}>
           <Carousel data={data} />
           <PostGrid data={data} />
         </Layout>
@@ -43,3 +47,19 @@ class Index extends React.Component {
   }
 }
 export default Index;
+export async function getStaticProps() {
+  // Get external data from the file system, API, DB, etc.
+
+  // The value of the `props` key will be
+  //  passed to the `Home` component
+  const res = await superagent.get('/publisher/list')
+    .query({
+      limit: 10,
+      offset: 0,
+    });
+  return {
+    props: {
+      publishers: res.body,
+    },
+  };
+}
