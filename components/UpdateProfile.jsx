@@ -4,7 +4,7 @@ import moment from 'moment';
 import { observer, inject } from 'mobx-react';
 
 import {
-  Form, Input, Button, Row, Col,
+  Form, Input, Button, Row, Col, notification,
 } from 'antd';
 
 import superagent from '../helpers/superagent';
@@ -36,12 +36,16 @@ class UpdateProfile extends React.Component {
         postObject.original_profile = this.state.original_profile;
       }
       superagent.put('/publisher')
-        .send(postObject).end((err) => {
+        .send(postObject).end((err, info) => {
           this.setState({ saving: false });
           if (!err) {
-            this.props.userStore.clear();
-            this.props.tokenStore.clear();
-            // this.forceUpdate();
+            this.props.userStore.value = info.body.data;
+            this.setState({ profile: '',original_profile: '',  });
+            notification.success({
+              message: 'سەرکەوتوبوو',
+              description: 'نوێکردنەوەی پرۆفایلەکەت سەرکەوتوو بوو',
+              placement: 'bottomRight',
+            });
           }
         });
     };
@@ -52,20 +56,28 @@ class UpdateProfile extends React.Component {
         this.setState({ profile: '' });
       }
     };
+    this.loadCurrentData = () => {
+      const { userStore } = this.props;
+      if (this.form.current) {
+        this.setState({
+          original_profile: userStore.value.profile,
+        });
+        this.form.current.setFieldsValue({
+          username: userStore.value.username,
+          website_url: userStore.value.website_url,
+          email: userStore.value.email,
+        });
+      }
+    };
     this.form = React.createRef();
   }
 
   componentDidMount() {
-    const { userStore } = this.props;
-    if (this.form.current) {
-      this.setState({
-        original_profile: userStore.value.profile,
-      });
-      this.form.current.setFieldsValue({
-        username: userStore.value.username,
-        website_url: userStore.value.website_url,
-        email: userStore.value.email,
-      });
+    this.loadCurrentData();
+    try {
+      this.props.loadCurrentData(this.loadCurrentData);
+    } catch (e) {
+      // who cares
     }
   }
 
@@ -79,6 +91,7 @@ class UpdateProfile extends React.Component {
             <Col span={12}>
               <Form.Item
                 label="ناوی به‌كارهێنه‌ر"
+                name="username"
               >
                 <Input disabled style={{ borderRadius: 6 }} />
               </Form.Item>

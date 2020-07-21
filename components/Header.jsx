@@ -33,14 +33,22 @@ class Header extends React.Component {
     this.toggleRegistrationModal = () => this.setState((prev) => ({
       registrationModalVisible: !prev.registrationModalVisible,
     }));
-    this.toggleUpdateProfileModal = () => this.setState((prev) => ({
-      updateProfileModalVisible: !prev.updateProfileModalVisible,
-    }));
+    this.toggleUpdateProfileModal = () => {
+      this.setState((prev) => {
+        if (!prev.updateProfileModalVisible) {
+          this.loadCurrentData();
+        }
+        return {
+          updateProfileModalVisible: !prev.updateProfileModalVisible,
+        };
+      });
+    };
     this.logout = () => {
       this.props.userStore.clear();
       this.props.tokenStore.clear();
     };
     this.loginFunction = () => {};
+    this.loadCurrentData = () => {};
   }
 
   render() {
@@ -152,7 +160,10 @@ class Header extends React.Component {
           title="نوێكردنه‌وه‌ی زانیاریه‌كان"
           onCancel={this.toggleUpdateProfileModal}
         >
-          <UpdateProfile />
+          <UpdateProfile loadCurrentData={(updateFormDataLoader) => {
+            this.loadCurrentData = updateFormDataLoader;
+          }}
+          />
         </Modal>
 
         <Row justify="center" gutter={(25)}>
