@@ -6,6 +6,7 @@ import PostGrid from '../components/PostGrid';
 import Carousel from '../components/Carousel';
 import Layout from '../components/Layout';
 import superagent from '../helpers/superagent';
+import PopulerPublishers from '../components/context/populerPublishers';
 
 moment.locale('ku');
 
@@ -36,12 +37,16 @@ class Index extends React.Component {
       },
     ];
     const { publishers } = this.props;
+    // console.log(publishers);
     return (
       <div style={{ padding: 40 }}>
-        <Layout publishers={publishers}>
-          <Carousel data={data} />
-          <PostGrid data={data} />
-        </Layout>
+        <PopulerPublishers.Provider value={publishers}>
+          <Layout>
+            <Carousel data={data} />
+            <PostGrid data={data} />
+          </Layout>
+        </PopulerPublishers.Provider>
+
       </div>
     );
   }
@@ -49,10 +54,7 @@ class Index extends React.Component {
 export default Index;
 export async function getStaticProps() {
   // Get external data from the file system, API, DB, etc.
-
-  // The value of the `props` key will be
-  //  passed to the `Home` component
-  const res = await superagent.get('/publisher/list')
+  const res = await superagent.get('/publisher/populer/list')
     .query({
       limit: 10,
       offset: 0,
