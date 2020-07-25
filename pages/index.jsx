@@ -58,14 +58,20 @@ class Index extends React.Component {
 export default Index;
 export async function getStaticProps() {
   // Get external data from the file system, API, DB, etc.
-  const res = await superagent.get('/publisher/populer/list')
+  const publisherRes = await superagent.get('/publisher/populer/list')
     .query({
       limit: 10,
       offset: 0,
     });
+  const linksRes = await superagent.get('/link/list')
+    .query({
+      limit: 14,
+      offset: 0,
+    });
   return {
     props: {
-      publishers: res.body,
+      publishers: publisherRes.body,
+      links: linksRes.body,
     },
   };
 }

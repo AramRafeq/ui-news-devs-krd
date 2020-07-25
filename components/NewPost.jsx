@@ -55,11 +55,18 @@ class NewPost extends React.Component {
           }
         });
     };
+    this.imagePickerChanged = (img) => {
+      if (img) {
+        this.setState({ thumbnail: img });
+      } else {
+        this.setState({ thumbnail: '' });
+      }
+    };
     this.form = React.createRef();
   }
 
   render() {
-    const { saving } = this.state;
+    const { saving, thumbnail } = this.state;
     return (
       <AuthGuard>
         {' '}
@@ -120,7 +127,7 @@ class NewPost extends React.Component {
               </Form.Item>
             </Col>
             <Col span={6} style={{ paddingTop: 20 }}>
-              <Base64Uploader style={{ borderRadius: 7 }} text="وێنه‌یه‌ك هه‌ڵبژێره‌" removeText="بسره‌وه‌" />
+              <Base64Uploader callbackFunction={this.imagePickerChanged} style={{ borderRadius: 7 }} text="وێنه‌یه‌ك هه‌ڵبژێره‌" removeText="بسره‌وه‌" />
             </Col>
           </Row>
           <Row>
