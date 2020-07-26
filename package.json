@@ -25,7 +25,8 @@
         "react-dom": "^16.13.1",
         "react-file-input-previews-base64": "^1.0.8",
         "superagent": "^5.3.1",
-        "superagent-absolute": "^1.0.1"
+        "superagent-absolute": "^1.0.1",
+        "uniqid": "^5.2.0"
     },
     "browser": {
         "fs": false,

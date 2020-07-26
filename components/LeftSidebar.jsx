@@ -3,8 +3,9 @@ import moment from 'moment';
 import {
   Avatar, Row, Col, Card, Tag, List,
 } from 'antd';
-import PopulerPublishers from './context/populerPublishers';
+import uniqid from 'uniqid';
 
+import PopulerPublishers from './context/populerPublishers';
 import {
 } from '@ant-design/icons';
 
@@ -83,11 +84,11 @@ class Header extends React.Component {
 
                     {
                       ctx.map((p) => (
-                        <List.Item>
+                        <List.Item key={uniqid()}>
                           <List.Item.Meta
                             avatar={<Avatar style={{ border: '2px solid rgb(182, 182, 182)' }} size={40} src={`${process.env.NEXT_PUBLIC_AWS_ENDPOINT}/${p.profile}`} />}
                             title={(
-                              <a href={p.website_url} target="_blank" rel="noreferrer">
+                              <a href={p.website_url} rel="noreferrer" target="_blank">
                                 {' '}
                                 {p.username}
                               </a>
