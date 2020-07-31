@@ -25,9 +25,9 @@ class Slide extends React.Component {
         headStyle={{ background: 'red' }}
         actions={[
           <div className="post-card-fav">
-            <span>200</span>
+            <span>{data.up_votes}</span>
             {' '}
-            <FireOutlined key="fav" />
+            <FireOutlined key="fav" onClick={()=>this.upVote(data.id)}/>
           </div>,
           <a rel="noreferrer" target="_blank" href={`https://twitter.com/share?text=${data.title}&url=${data.url}&hashtags=devskrd,kurddevelopers,${data.publisher_name},devstree,درەختی_گەشەپێدەران,گەشەپێدەرانی_کورد,devstree_io`} label={data.title}><TwitterOutlined key="twitter" /></a>,
           <a rel="noreferrer" target="_blank" href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(data.url)}`} label={data.title}><FacebookOutlined /></a>,

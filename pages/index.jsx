@@ -44,8 +44,8 @@ export async function getServerSideProps(req) {
     props: {
       publishers: publisherRes.body,
       links: linksRes.body,
-      limit: req.query.limit,
-      offset: req.query.offset,
+      // limit: req.query.limit,
+      // offset: req.query.offset,
     },
   };
 }
