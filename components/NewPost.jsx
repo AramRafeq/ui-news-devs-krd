@@ -13,9 +13,8 @@ import Base64Uploader from './basic/Base64Uploader';
 import AuthGuard from './AuthGuard';
 
 // moment.locale('ku');
-
-@inject('userStore', 'tokenStore')
 @observer
+@inject('userStore', 'tokenStore')
 class NewPost extends React.Component {
   constructor(props) {
     super(props);
@@ -40,7 +39,7 @@ class NewPost extends React.Component {
         postObject.original_thumbnail = original_thumbnail;
       }
       superagent.post('/link')
-        .send(postObject).end((err, info) => {
+        .send(postObject).end((err) => {
           this.setState({ saving: false });
           if (!err) {
             this.setState({ thumbnail: '' });
@@ -66,7 +65,7 @@ class NewPost extends React.Component {
   }
 
   render() {
-    const { saving, thumbnail } = this.state;
+    const { saving } = this.state;
     return (
       <AuthGuard>
         {' '}
