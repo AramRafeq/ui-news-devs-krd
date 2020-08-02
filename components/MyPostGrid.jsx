@@ -4,15 +4,39 @@ import Link from 'next/link';
 import uniqid from 'uniqid';
 
 import {
-  Col, Row, Empty, Popover, Popconfirm, Button,
+  Col, Row, Empty, Popover, Popconfirm, Button, notification,
 } from 'antd';
 import { ArrowRightOutlined, ArrowLeftOutlined } from '@ant-design/icons';
+import { observer, inject } from 'mobx-react';
+
+import superagent from '../helpers/superagent';
 
 import PostCard from './PostCard';
 import Page from './context/page';
 import SearchQuery from './context/searchQuery';
 
+@inject('tokenStore')
+@observer
 class MyPostGrid extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.deletePost = (post) => {
+      const token = props.tokenStore.value;
+      superagent.set('authorization', `Bearer ${token}`);
+      superagent.delete(`/link/${post.id}`)
+        .send({}).end((err) => {
+          if (!err) {
+            notification.success({
+              message: 'سەرکەوتوبوو',
+              description: 'به‌سته‌ر سرایه‌وه‌',
+              placement: 'bottomRight',
+            });
+          }
+        });
+    };
+  }
+
   render() {
     const { data } = this.props;
     return (
