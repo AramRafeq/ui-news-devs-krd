@@ -1,9 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import Link from 'next/link';
+import uniqid from 'uniqid';
 
 import { Col, Row } from 'antd';
 import { ArrowRightOutlined, ArrowLeftOutlined } from '@ant-design/icons';
+
 import PostCard from './PostCard';
 import Page from './context/page';
 
@@ -16,8 +18,8 @@ class Slide extends React.Component {
           <>
             <Row style={{ marginTop: 10 }} gutter={[10, 10]}>
               {data.map((d) => (
-                <Col span={12}>
-                  <PostCard data={d} />
+                <Col span={12} key={uniqid()}>
+                  <PostCard data={d} key={uniqid()} />
                 </Col>
               ))}
             </Row>

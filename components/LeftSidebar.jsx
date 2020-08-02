@@ -75,13 +75,6 @@ class Header extends React.Component {
                 >
                   <span className="sidebar-card-header">به‌ناوبانگترین لایه‌نه‌كان</span>
                   <List itemLayout="horizontal">
-                    {/* <List.Item>
-                      <List.Item.Meta
-                        avatar={<Avatar style={{ border: '2px solid rgb(182, 182, 182)' }} size={40} src="https://kitn.net/wp-content/uploads/2019/10/kk-1.jpg" />}
-                        title={<a href="https://ant.design"> ته‌كنه‌لۆجیای زانیاری كوردی</a>}
-                      />
-                    </List.Item> */}
-
                     {
                       ctx.map((p) => (
                         <List.Item key={uniqid()}>

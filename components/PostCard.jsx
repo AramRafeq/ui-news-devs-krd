@@ -17,14 +17,14 @@ import superagent from '../helpers/superagent';
 class Slide extends React.Component {
   constructor(props) {
     super(props);
-    const token = props.tokenStore.value;
-    superagent.set('authorization', `Bearer ${token}`);
     this.state = props.data;
     this.copyUrl = (url) => {
       navigator.clipboard.writeText(url);
       message.success('بەستەر کۆپی کرا');
     };
     this.upVote = (id) => {
+      const token = props.tokenStore.value;
+      superagent.set('authorization', `Bearer ${token}`);
       superagent.post(`/link/${id}/upvote`)
         .send({}).end((err) => {
           if (!err) {

@@ -24,10 +24,10 @@ class NewPost extends React.Component {
       original_thumbnail: '',
     });
     this.state = this.initialState();
-    const token = props.tokenStore.value;
-    superagent.set('authorization', `Bearer ${token}`);
-
     this.onFinish = (values) => {
+      const token = props.tokenStore.value;
+      superagent.set('authorization', `Bearer ${token}`);
+
       this.setState({ saving: true });
       const postObject = {
         ...values,

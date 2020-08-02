@@ -56,6 +56,19 @@ body{
 .navlink-row:hover button *{
     color: white !important;
 }
+.navlink-row .nav-link-icon {
+    /* background: #fbfbfb; */
+    padding: 8px;
+    border-radius: 3px;
+    color: #868786;
+}
+.navlink-row:hover .nav-link-icon{
+    background: #e45858 !important;
+    color: white !important;
+}
+.navlink-row:hover .nav-link-icon *{
+    color: white !important;
+}
 
 .sidebar-card-header{
     background: #2b2c34;

@@ -2,10 +2,11 @@
 import React from 'react';
 import moment from 'moment';
 import { observer, inject } from 'mobx-react';
+import Router from 'next/router';
 
 import {
   Modal, Input, Button,
-  Popover, Avatar, Row, Col,
+  Popover, Avatar, Row, Col, Form,
 } from 'antd';
 import {
   ExportOutlined, SettingOutlined, UserOutlined, SearchOutlined, LoginOutlined, UserAddOutlined,
@@ -46,6 +47,9 @@ class Header extends React.Component {
     this.logout = () => {
       this.props.userStore.clear();
       this.props.tokenStore.clear();
+    };
+    this.onFinish = (values) => {
+      Router.push('/search', { query: { q: values.search_query } });
     };
     this.loginFunction = () => {};
     this.loadCurrentData = () => {};
@@ -201,7 +205,19 @@ class Header extends React.Component {
             </h1>
           </Col>
           <Col span={6} align="center">
-            <Input placeholder="بگەرێ بۆ بابەت" prefix={<Button icon={<SearchOutlined />} />} className="search-input" />
+            <Form onFinish={this.onFinish}>
+              <Form.Item
+                name="search_query"
+                rules={[
+                  {
+                    required: true,
+                    message: 'شوێنی گه‌ران به‌تاڵه‌',
+                  },
+                ]}
+              >
+                <Input placeholder="بگەرێ بۆ بابەت" prefix={<Button htmlType="submit" icon={<SearchOutlined />} />} className="search-input" />
+              </Form.Item>
+            </Form>
           </Col>
         </Row>
 

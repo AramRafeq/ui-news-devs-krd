@@ -4,7 +4,6 @@ import Router from 'next/router';
 import { observer } from 'mobx-react';
 
 import {
-  Button,
   Row, Col,
   Modal,
 } from 'antd';
@@ -57,13 +56,7 @@ class Layout extends React.Component {
             <Row className="navlink-row" gutter={(30)}>
               <Col span={24} onClick={this.goHome}>
                 <h2>
-                  <Button
-                    icon={<HomeOutlined />}
-                    size="large"
-                    style={{
-                      border: 'none', borderRadius: 7, background: '#fbfbfb', color: '#878787',
-                    }}
-                  />
+                  <HomeOutlined className="nav-link-icon" />
                   <span style={{ marginRight: 15 }}>ماڵه‌وه‌</span>
                 </h2>
               </Col>
@@ -71,13 +64,8 @@ class Layout extends React.Component {
             <Row className="navlink-row" gutter={(30)}>
               <Col span={24} onClick={this.toggleNewModal}>
                 <h2>
-                  <Button
-                    icon={<PlusOutlined />}
-                    size="large"
-                    style={{
-                      border: 'none', borderRadius: 7, background: '#fbfbfb', color: '#878787',
-                    }}
-                  />
+
+                  <PlusOutlined className="nav-link-icon" />
                   <span style={{ marginRight: 15 }}>بنووسە</span>
                 </h2>
               </Col>
@@ -85,13 +73,8 @@ class Layout extends React.Component {
             <Row className="navlink-row" gutter={(30)}>
               <Col span={24}>
                 <h2>
-                  <Button
-                    icon={<GithubOutlined />}
-                    size="large"
-                    style={{
-                      border: 'none', borderRadius: 7, background: '#fbfbfb', color: '#878787',
-                    }}
-                  />
+
+                  <GithubOutlined className="nav-link-icon" />
                   <span style={{ marginRight: 15 }}>گیتهەب</span>
                 </h2>
               </Col>
@@ -99,13 +82,8 @@ class Layout extends React.Component {
             <Row className="navlink-row" gutter={(30)}>
               <Col span={24}>
                 <h2>
-                  <Button
-                    icon={<CodeOutlined />}
-                    size="large"
-                    style={{
-                      border: 'none', borderRadius: 7, background: '#fbfbfb', color: '#878787',
-                    }}
-                  />
+
+                  <CodeOutlined className="nav-link-icon" />
                   <span style={{ marginRight: 15 }}>بەکارهێنان</span>
                 </h2>
               </Col>
@@ -113,13 +91,8 @@ class Layout extends React.Component {
             <Row className="navlink-row" gutter={(30)}>
               <Col span={24}>
                 <h2>
-                  <Button
-                    icon={<ExclamationCircleOutlined />}
-                    size="large"
-                    style={{
-                      border: 'none', borderRadius: 7, background: '#fbfbfb', color: '#878787',
-                    }}
-                  />
+
+                  <ExclamationCircleOutlined className="nav-link-icon" />
                   <span style={{ marginRight: 15 }}>دەربارەی ئێمە</span>
                 </h2>
               </Col>

@@ -18,13 +18,13 @@ class Slide extends React.Component {
   constructor(props) {
     super(props);
     this.state = props.data;
-    const token = props.tokenStore.value;
-    superagent.set('authorization', `Bearer ${token}`);
     this.copyUrl = (url) => {
       navigator.clipboard.writeText(url);
       message.success('بەستەر کۆپی کرا');
     };
     this.upVote = (id) => {
+      const token = props.tokenStore.value;
+      superagent.set('authorization', `Bearer ${token}`);
       superagent.post(`/link/${id}/upvote`)
         .send({}).end((err) => {
           if (!err) {
