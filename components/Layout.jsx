@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import Router from 'next/router';
-import { observer } from 'mobx-react';
+import { observer, inject } from 'mobx-react';
 
 import {
   Row, Col,
@@ -9,6 +9,7 @@ import {
 } from 'antd';
 import {
   HomeOutlined, PlusOutlined, GithubOutlined, CodeOutlined, ExclamationCircleOutlined,
+  BookOutlined,
 } from '@ant-design/icons';
 import Header from './Header';
 import LeftSidebar from './LeftSidebar';
@@ -16,6 +17,7 @@ import NewPost from './NewPost';
 
 moment.locale('ku');
 
+@inject('tokenStore')
 @observer
 class Layout extends React.Component {
   constructor(props) {
@@ -31,11 +33,21 @@ class Layout extends React.Component {
     this.goHome = () => {
       Router.push('/');
     };
+    this.goToGithub = () => {
+      Router.push('/github');
+    };
+    this.goToUsage = () => {
+      Router.push('/usage');
+    };
+    this.goToMyPosts = () => {
+      Router.push('/myposts');
+    };
   }
 
   render() {
     const {
       children, hideLeftSidebar, containerStyle, publishers,
+      tokenStore,
     } = this.props;
     const { newPostModalVisible } = this.state;
     return (
@@ -70,19 +82,28 @@ class Layout extends React.Component {
                 </h2>
               </Col>
             </Row>
-            <Row className="navlink-row" gutter={(30)}>
-              <Col span={24}>
-                <h2>
+            {(tokenStore.value ? (
+              <Row className="navlink-row" gutter={(30)}>
+                <Col span={24} onClick={this.goToMyPosts}>
+                  <h2>
+                    <BookOutlined className="nav-link-icon" />
+                    <span style={{ marginRight: 15 }}>پۆسته‌كانم</span>
+                  </h2>
+                </Col>
+              </Row>
+            ) : null)}
 
+            <Row className="navlink-row" gutter={(30)}>
+              <Col span={24} onClick={this.goToGithub}>
+                <h2>
                   <GithubOutlined className="nav-link-icon" />
                   <span style={{ marginRight: 15 }}>گیتهەب</span>
                 </h2>
               </Col>
             </Row>
             <Row className="navlink-row" gutter={(30)}>
-              <Col span={24}>
+              <Col span={24} onClick={this.goToUsage}>
                 <h2>
-
                   <CodeOutlined className="nav-link-icon" />
                   <span style={{ marginRight: 15 }}>بەکارهێنان</span>
                 </h2>

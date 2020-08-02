@@ -3,14 +3,16 @@ import React from 'react';
 import Link from 'next/link';
 import uniqid from 'uniqid';
 
-import { Col, Row, Empty } from 'antd';
+import {
+  Col, Row, Empty, Popover, Popconfirm, Button,
+} from 'antd';
 import { ArrowRightOutlined, ArrowLeftOutlined } from '@ant-design/icons';
 
 import PostCard from './PostCard';
 import Page from './context/page';
 import SearchQuery from './context/searchQuery';
 
-class Slide extends React.Component {
+class MyPostGrid extends React.Component {
   render() {
     const { data } = this.props;
     return (
@@ -21,8 +23,21 @@ class Slide extends React.Component {
               <>
                 <Row style={{ marginTop: 10 }} gutter={[10, 10]}>
                   {data.map((d) => (
-                    <Col span={12} key={uniqid()}>
-                      <PostCard data={d} key={uniqid()} />
+                    <Col span={8} key={uniqid()}>
+                      <Popover content={(
+                        <Popconfirm
+                          title="دڵنیای له‌ سرینه‌وه‌ی پۆست؟ هیچ رێگایه‌ك نیه‌ بۆ گه‌راندنه‌وه‌"
+                          onConfirm={() => this.deletePost(d)}
+                          okText="به‌ڵی بیسره‌وه‌"
+                          cancelText="نه‌خێر"
+                        >
+                          <Button type="primary" danger>بیسره‌وه‌</Button>
+                        </Popconfirm>
+                        )}
+                      >
+                        <PostCard data={d} key={uniqid()} />
+                        <span />
+                      </Popover>
                     </Col>
                   ))}
                   {data.length <= 0 ? <Col span={24}><Empty description="هیچ به‌سته‌رێك نه‌دۆزرایه‌وه‌" /></Col> : null}
@@ -57,4 +72,4 @@ class Slide extends React.Component {
   }
 }
 
-export default Slide;
+export default MyPostGrid;

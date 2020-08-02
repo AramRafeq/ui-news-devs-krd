@@ -2,6 +2,7 @@
 import React from 'react';
 import moment from 'moment';
 import { observer, inject } from 'mobx-react';
+import Cookies from 'js-cookie';
 
 import {
   Form, Input, Button,
@@ -16,8 +17,6 @@ moment.locale('ku');
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    // const token = props.tokenStore.value;
-    // superagent.set('authorization', `Bearer ${props.}`);
     this.initialState = () => ({
       saving: false,
     });
@@ -34,6 +33,7 @@ class Login extends React.Component {
             const user = res.body;
             this.props.tokenStore.value = user.token;
             this.props.userStore.value = user;
+            Cookies.set('news-devs-krd-token', user.token, { expires: 365 });
             try {
               const { toggleModal } = this.props;
               toggleModal();

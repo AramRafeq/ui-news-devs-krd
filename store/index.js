@@ -2,6 +2,7 @@
 import { observable } from 'mobx';
 import { useStaticRendering } from 'mobx-react';
 import { persist, create } from 'mobx-persist';
+import Cookies from 'js-cookie';
 
 useStaticRendering(typeof window === 'undefined');
 
@@ -10,6 +11,7 @@ class Token {
 
   @observable clear() {
     this.value = '';
+    Cookies.remove('news-devs-krd-token');
   }
 }
 class User {
@@ -33,6 +35,7 @@ if (process.browser) {
   hydrate('news-devs-krd-user', userStore).then(() => {});
   hydrate('news-devs-krd-token', tokenStore).then(() => {});
 }
+
 export default {
   userStore,
   tokenStore,

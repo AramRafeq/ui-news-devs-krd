@@ -6,11 +6,12 @@ import Layout from '../components/Layout';
 
 moment.locale('ku');
 
-class UI extends React.Component {
+class New extends React.Component {
   render() {
     return (
       <div style={{ padding: 40 }}>
-        <Layout containerStyle={{ padding: 25 }}>
+        <Layout hideLeftSidebar containerStyle={{ padding: 25 }}>
+          <h1>به‌سته‌ری نوێ  بنێره‌</h1>
           <NewPost />
         </Layout>
 
@@ -18,4 +19,4 @@ class UI extends React.Component {
     );
   }
 }
-export default UI;
+export default New;

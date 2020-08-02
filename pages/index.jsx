@@ -43,7 +43,7 @@ class Index extends React.Component {
   }
 }
 export default Index;
-export async function getServerSideProps(req) {
+export async function getServerSideProps(ctx) {
   const publisherRes = await superagent.get('/publisher/populer/list')
     .query({
       limit: 10,
@@ -52,7 +52,7 @@ export async function getServerSideProps(req) {
   const defualtNewsLimit = 14;
   let page = 1;
   try {
-    page = parseInt(req.query.page || page, 10);
+    page = parseInt(ctx.query.page || page, 10);
     page = page >= 1 ? page : 1;
   } catch (e) {
     page = 1;

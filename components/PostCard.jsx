@@ -1,7 +1,9 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
-import { Card, message, notification } from 'antd';
+import {
+  Card, message, notification, Popover, Typography,
+} from 'antd';
 import {
   FireOutlined,
   CopyOutlined,
@@ -14,7 +16,7 @@ import superagent from '../helpers/superagent';
 
 @inject('tokenStore')
 @observer
-class Slide extends React.Component {
+class PostGrid extends React.Component {
   constructor(props) {
     super(props);
     this.state = props.data;
@@ -53,13 +55,24 @@ class Slide extends React.Component {
           </div>,
           <a rel="noreferrer" target="_blank" href={`https://twitter.com/share?text=${data.title}&url=${data.url}&hashtags=devskrd,kurddevelopers,${data.publisher_name},devstree,درەختی_گەشەپێدەران,گەشەپێدەرانی_کورد,devstree_io`} label={data.title}><TwitterOutlined key="twitter" /></a>,
           <a rel="noreferrer" target="_blank" href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(data.url)}`} label={data.title}><FacebookOutlined /></a>,
-          <CopyOutlined onClick={() => this.copyUrl(data.url)} />,
-          <a href={data.url} rel="noreferrer" target="_blank" label={data.title}><LinkOutlined /></a>,
+          <Popover content={
+            <Typography.Text copyable>{data.url}</Typography.Text>
+          }
+          >
+            <CopyOutlined onClick={() => this.copyUrl(data.url)} />
+          </Popover>,
+          <Popover content={
+            <Typography.Text copyable>{data.url}</Typography.Text>
+          }
+          >
+            <a href={data.url} rel="noreferrer" target="_blank" label={data.title}><LinkOutlined /></a>
+          </Popover>,
         ]}
       >
         <Card.Meta
           title={
-            <a href={data.url} rel="noreferrer" target="_blank" alt={data.title}>{data.title}</a>
+            data.title
+            // <a href={data.url} rel="noreferrer" target="_blank" alt={data.title}>{data.title}</a>
           }
           description={data.desc}
         />
@@ -68,4 +81,4 @@ class Slide extends React.Component {
   }
 }
 
-export default Slide;
+export default PostGrid;

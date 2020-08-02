@@ -14,6 +14,7 @@ import {
 import Login from './Login';
 import Registration from './Register';
 import UpdateProfile from './UpdateProfile';
+import SearchQuery from './context/searchQuery';
 
 moment.locale('ku');
 
@@ -26,6 +27,7 @@ class Header extends React.Component {
       loginModalVisible: false,
       registrationModalVisible: false,
       updateProfileModalVisible: false,
+      searchLoading: false,
     });
     this.state = this.initialState();
     this.toggleLoginModal = () => this.setState((prev) => ({
@@ -49,7 +51,11 @@ class Header extends React.Component {
       this.props.tokenStore.clear();
     };
     this.onFinish = (values) => {
-      Router.push('/search', { query: { q: values.search_query } });
+      this.setState({ searchLoading: true });
+      Router.push(`/search?q=${values.search_query}`).then(() => {
+        this.setState({ searchLoading: false });
+      });
+      // Router.push('/search', { query: { q: values.search_query } });
     };
     this.loginFunction = () => {};
     this.loadCurrentData = () => {};
@@ -128,7 +134,9 @@ class Header extends React.Component {
 
       </>
     );
-    const { loginModalVisible, registrationModalVisible, updateProfileModalVisible } = this.state;
+    const {
+      loginModalVisible, registrationModalVisible, updateProfileModalVisible, searchLoading,
+    } = this.state;
     return (
       <>
         <Modal
@@ -191,6 +199,7 @@ class Header extends React.Component {
           <Col span={12}>
             <h1 className="header-txt">
               <span>دواین هه‌واڵی ته‌كنه‌لۆجی</span>
+              &nbsp;
               <span style={{
                 backgroundColor: '#2b2c34',
                 margin: 15,
@@ -205,19 +214,25 @@ class Header extends React.Component {
             </h1>
           </Col>
           <Col span={6} align="center">
-            <Form onFinish={this.onFinish}>
-              <Form.Item
-                name="search_query"
-                rules={[
-                  {
-                    required: true,
-                    message: 'شوێنی گه‌ران به‌تاڵه‌',
-                  },
-                ]}
-              >
-                <Input placeholder="بگەرێ بۆ بابەت" prefix={<Button htmlType="submit" icon={<SearchOutlined />} />} className="search-input" />
-              </Form.Item>
-            </Form>
+            <SearchQuery.Consumer>
+              {(ctx) => (
+                <Form onFinish={this.onFinish}>
+                  <Form.Item
+                    initialValue={ctx != null && ctx.page ? '' : ctx}
+                    name="search_query"
+                    // rules={[
+                    //   {
+                    //     required: true,
+                    //     message: 'شوێنی گه‌ران به‌تاڵه‌',
+                    //   },
+                    // ]}
+                  >
+                    <Input placeholder="بگەرێ بۆ بابەت" prefix={<Button htmlType="submit" loading={searchLoading} icon={<SearchOutlined />} />} className="search-input" />
+                  </Form.Item>
+                </Form>
+              )}
+            </SearchQuery.Consumer>
+
           </Col>
         </Row>
 
