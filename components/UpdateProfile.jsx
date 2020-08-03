@@ -65,6 +65,8 @@ class UpdateProfile extends React.Component {
         this.form.current.setFieldsValue({
           username: userStore.value.username,
           website_url: userStore.value.website_url,
+          rssfeed_url: userStore.value.rssfeed_url,
+          display_name: userStore.value.display_name,
           email: userStore.value.email,
         });
       }
@@ -98,8 +100,35 @@ class UpdateProfile extends React.Component {
             </Col>
             <Col span={12}>
               <Form.Item
+                label="نازناو"
+                name="display_name"
+                rules={[
+                  {
+                    required: true,
+                    message: 'نازناو پێویسته‌',
+                  },
+                ]}
+              >
+                <Input style={{ borderRadius: 6 }} />
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={(10)}>
+            <Col span={12}>
+              <Form.Item
                 label="به‌سته‌ری ماڵپه‌ر"
                 name="website_url"
+                rules={[
+
+                ]}
+              >
+                <Input style={{ borderRadius: 6 }} />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item
+                label="به‌سته‌ری RSS ی ماڵپه‌ره‌كه‌ت"
+                name="rssfeed_url"
                 rules={[
 
                 ]}
@@ -166,6 +195,7 @@ class UpdateProfile extends React.Component {
               <Base64Uploader file={`${process.env.NEXT_PUBLIC_AWS_ENDPOINT}/${userStore.value.profile}`} callbackFunction={this.imagePickerChanged} style={{ borderRadius: 7 }} text="وێنه‌ی پرۆفایل" removeText="بسره‌وه‌" />
             </Col>
           </Row>
+          <br />
           <Form.Item>
             <Button loading={saving} htmlType="submit" style={{ background: '#2b2c34' }} type="primary">نوێكردنه‌وه‌</Button>
           </Form.Item>

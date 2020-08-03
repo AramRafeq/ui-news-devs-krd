@@ -2,12 +2,13 @@ import React from 'react';
 import moment from 'moment';
 import {
   Avatar, Row, Col, Card, Tag, List,
+  Badge, Popover,
 } from 'antd';
+import { CheckOutlined } from '@ant-design/icons';
+
 import uniqid from 'uniqid';
 
 import PopulerPublishers from './context/populerPublishers';
-import {
-} from '@ant-design/icons';
 
 moment.locale('ku');
 class Header extends React.Component {
@@ -79,11 +80,36 @@ class Header extends React.Component {
                       ctx.map((p) => (
                         <List.Item key={uniqid()}>
                           <List.Item.Meta
-                            avatar={<Avatar style={{ border: '2px solid rgb(182, 182, 182)' }} size={40} src={`${process.env.NEXT_PUBLIC_AWS_ENDPOINT}/${p.profile}`} />}
+                            avatar={
+                              (p.verified)
+                                ? (
+                                  <Popover content={<img alt="" width={150} src={`${process.env.NEXT_PUBLIC_AWS_ENDPOINT}/${p.profile}`} />}>
+
+                                    <Badge
+                                      style={{
+                                        background: '#5cb85c',
+                                        padding: 3,
+                                        borderRadius: 10,
+                                        color: 'white',
+                                      }}
+                                      offset={[35, 30]}
+                                      count={<CheckOutlined style={{ fontSize: 8 }} />}
+                                    >
+                                      <Avatar style={{ border: '2px solid rgb(182, 182, 182)' }} size={40} src={`${process.env.NEXT_PUBLIC_AWS_ENDPOINT}/${p.profile}`} />
+                                    </Badge>
+                                  </Popover>
+                                )
+                                : (
+                                  <Popover content={<img alt="" width={150} src={`${process.env.NEXT_PUBLIC_AWS_ENDPOINT}/${p.profile}`} />}>
+                                    <Avatar style={{ border: '2px solid rgb(182, 182, 182)' }} size={40} src={`${process.env.NEXT_PUBLIC_AWS_ENDPOINT}/${p.profile}`} />
+                                  </Popover>
+                                )
+
+                          }
                             title={(
                               <a href={p.website_url} rel="noreferrer" target="_blank">
                                 {' '}
-                                {p.username}
+                                {p.display_name}
                               </a>
                             )}
                           />

@@ -2,6 +2,7 @@
 import React from 'react';
 import moment from 'moment';
 import { observer, inject } from 'mobx-react';
+import Cookies from 'js-cookie';
 
 import {
   Form, Input, Button, Row, Col,
@@ -31,15 +32,38 @@ class Register extends React.Component {
         profile: this.state.profile,
         email: values.email ? values.email : '',
         website_url: values.website_url ? values.website_url : '',
+        rssfeed_url: values.rssfeed_url ? values.rssfeed_url : '',
       };
       superagent.post('/publisher')
         .send(postObject).end((err) => {
-          this.setState({ saving: false });
+          // this.setState({ saving: false });
           if (!err) {
-            this.props.loginFunction({
+            this.loginFunction({
               username: values.username,
               password: values.password,
             });
+          }
+        });
+    };
+    this.loginFunction = (values) => {
+      this.setState({ saving: true });
+      superagent.post('/auth/login')
+        .send({
+          password: values.password,
+          username: values.username,
+        }).end((err, res) => {
+          this.setState({ saving: false });
+          if (!err) {
+            const user = res.body;
+            this.props.tokenStore.value = user.token;
+            this.props.userStore.value = user;
+            Cookies.set('news-devs-krd-token', user.token, { expires: 365 });
+            try {
+              const { toggleModal } = this.props;
+              toggleModal();
+            } catch (e) {
+            // who cares
+            }
           }
         });
     };
@@ -75,8 +99,35 @@ class Register extends React.Component {
             </Col>
             <Col span={12}>
               <Form.Item
+                label="نازناو"
+                name="display_name"
+                rules={[
+                  {
+                    required: true,
+                    message: 'نازناو پێویسته‌',
+                  },
+                ]}
+              >
+                <Input style={{ borderRadius: 6 }} />
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={(10)}>
+            <Col span={12}>
+              <Form.Item
                 label="به‌سته‌ری ماڵپه‌ر"
                 name="website_url"
+                rules={[
+
+                ]}
+              >
+                <Input style={{ borderRadius: 6 }} />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item
+                label="به‌سته‌ری RSS ی ماڵپه‌ره‌كه‌ت"
+                name="rssfeed_url"
                 rules={[
 
                 ]}

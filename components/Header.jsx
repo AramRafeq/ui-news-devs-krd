@@ -6,10 +6,13 @@ import Router from 'next/router';
 
 import {
   Modal, Input, Button,
-  Popover, Avatar, Row, Col, Form,
+  Popover, Avatar, Row, Col, Form, Badge,
 } from 'antd';
 import {
-  ExportOutlined, SettingOutlined, UserOutlined, SearchOutlined, LoginOutlined, UserAddOutlined,
+  CheckOutlined,
+  ExportOutlined, SettingOutlined,
+  UserOutlined, SearchOutlined, LoginOutlined,
+  UserAddOutlined,
 } from '@ant-design/icons';
 import Login from './Login';
 import Registration from './Register';
@@ -57,7 +60,6 @@ class Header extends React.Component {
       });
       // Router.push('/search', { query: { q: values.search_query } });
     };
-    this.loginFunction = () => {};
     this.loadCurrentData = () => {};
   }
 
@@ -91,7 +93,7 @@ class Header extends React.Component {
                         border: 'none', borderRadius: 7, background: '#fbfbfb', color: '#878787',
                       }}
                     />
-              &nbsp;&nbsp;
+                    &nbsp;&nbsp;
                     <span>دەرچوون</span>
                   </Col>
                 </Row>
@@ -149,9 +151,6 @@ class Header extends React.Component {
         >
           <Login
             toggleModal={this.toggleLoginModal}
-            loaded={(loginFunction) => {
-              this.loginFunction = loginFunction;
-            }}
           />
         </Modal>
         <Modal
@@ -162,7 +161,7 @@ class Header extends React.Component {
           title="خۆتۆماركردن"
           onCancel={this.toggleRegistrationModal}
         >
-          <Registration loginFunction={this.loginFunction} />
+          <Registration />
         </Modal>
         <Modal
           visible={updateProfileModalVisible}
@@ -177,11 +176,25 @@ class Header extends React.Component {
           }}
           />
         </Modal>
-
         <Row justify="center" gutter={(25)}>
           <Col span={6}>
             <Popover placement="bottomRight" content={profileDropdownContent} trigger="hover">
-              <Avatar size={45} icon={tokenStore.value === '' ? <UserOutlined /> : null} src={tokenStore.value !== '' ? `${process.env.NEXT_PUBLIC_AWS_ENDPOINT}/${userStore.value.profile}` : null} />
+              {(userStore.value.verified)
+                ? (
+                  <Badge
+                    style={{
+                      background: '#5cb85c',
+                      padding: 3,
+                      borderRadius: 10,
+                      color: 'white',
+                    }}
+                    offset={[40, 35]}
+                    count={<CheckOutlined style={{ fontSize: 8 }} />}
+                  >
+                    <Avatar size={45} icon={tokenStore.value === '' ? <UserOutlined /> : null} src={tokenStore.value !== '' ? `${process.env.NEXT_PUBLIC_AWS_ENDPOINT}/${userStore.value.profile}` : null} />
+                  </Badge>
+                )
+                : <Avatar size={45} icon={tokenStore.value === '' ? <UserOutlined /> : null} src={tokenStore.value !== '' ? `${process.env.NEXT_PUBLIC_AWS_ENDPOINT}/${userStore.value.profile}` : null} />}
               &nbsp;&nbsp;&nbsp;&nbsp;
               {
                 (tokenStore.value !== '')
@@ -189,7 +202,7 @@ class Header extends React.Component {
                     <span>
                       به‌خێربێیت
                       {' '}
-                      {userStore.value.username}
+                      <b>{userStore.value.display_name}</b>
                     </span>
                   )
                   : <span>{moment().format('lll').toString()}</span>
