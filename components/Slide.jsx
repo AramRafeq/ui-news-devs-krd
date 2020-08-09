@@ -11,6 +11,7 @@ import {
 import { message, notification } from 'antd';
 import { observer, inject } from 'mobx-react';
 import superagent from '../helpers/superagent';
+import validURL from '../helpers/validURL';
 
 @inject('tokenStore')
 @observer
@@ -41,8 +42,10 @@ class Slide extends React.Component {
 
   render() {
     const data = this.state;
+    const postCoverUrl = `${process.env.NEXT_PUBLIC_AWS_ENDPOINT}/${data.thumbnail}`;
+
     return (
-      <div key={`${process.env.NEXT_PUBLIC_AWS_ENDPOINT}/${data.thumbnail}`}>
+      <div key={validURL(data.thumbnail) ? data.thumbnail : postCoverUrl}>
         <div style={{
           borderRadius: 7,
           height: 450,
@@ -52,7 +55,7 @@ class Slide extends React.Component {
               to bottom,
               rgba(0, 0, 0, 0),
               rgba(0, 0, 0, 0.8)
-            ),url('${process.env.NEXT_PUBLIC_AWS_ENDPOINT}/${data.thumbnail}')`,
+            ),url('${validURL(data.thumbnail) ? data.thumbnail : postCoverUrl}')`,
           backgroundSize: 'cover',
           zIndex: 1,
           position: 'relative',

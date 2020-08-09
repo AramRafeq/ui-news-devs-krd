@@ -13,6 +13,7 @@ import {
 } from '@ant-design/icons';
 import { observer, inject } from 'mobx-react';
 import superagent from '../helpers/superagent';
+import validURL from '../helpers/validURL';
 
 @inject('tokenStore')
 @observer
@@ -43,9 +44,11 @@ class PostGrid extends React.Component {
 
   render() {
     const data = this.state;
+    const postCoverUrl = `${process.env.NEXT_PUBLIC_AWS_ENDPOINT}/${data.thumbnail}`;
+
     return (
       <Card
-        cover={<div style={{ padding: 6 }}><img style={{ width: '100%', borderRadius: 7 }} alt="test" src={`${process.env.NEXT_PUBLIC_AWS_ENDPOINT}/${data.thumbnail}`} /></div>}
+        cover={<div style={{ padding: 6 }}><img style={{ width: '100%', borderRadius: 7 }} alt="test" src={validURL(data.thumbnail) ? data.thumbnail : postCoverUrl} /></div>}
         headStyle={{ background: 'red' }}
         actions={[
           <div className="post-card-fav" onClick={() => this.upVote(data.id)}>
