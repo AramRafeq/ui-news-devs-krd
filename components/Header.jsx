@@ -1,8 +1,11 @@
+/* eslint-disable react/no-danger */
+/* eslint-disable jsx-a11y/accessible-emoji */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import moment from 'moment';
 import { observer, inject } from 'mobx-react';
 import Router from 'next/router';
+import Head from 'next/head';
 
 import {
   Modal, Input, Button,
@@ -141,6 +144,37 @@ class Header extends React.Component {
     } = this.state;
     return (
       <>
+        <Head>
+          <title>🗞️ نوێترین وتار و هەواڵی تەکنەلۆژیی کوردی</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
+          <meta name="title" content="نوێترین وتار و هەواڵی تەکنەلۆژیی کوردی" />
+          <meta name="description" content="ئاگاداربه‌ له‌ دواین هه‌واڵه‌ ته‌كنه‌لۆژیه‌كان كه‌ به‌ زمانی كوردی بڵاوده‌كرێنه‌وه‌، خوێنه‌ری بابه‌ته‌كانت زیاد بكه‌ له‌رێگه‌ی ئه‌م ماڵپه‌ره‌وه‌" />
+          <meta name="keywords" content="developerstree, devstree,devstree.io,news.devs.krd, news-devs-krd, kurdish news, دواین هه‌واڵی ته‌كنه‌لۆژی, دره‌ختی گه‌شه‌پێده‌ران" />
+          <meta property="article:author" content="https://devstree.io" />
+          <meta property="og:locale" content="ckb_KU" />
+          <meta property="og:site_name" content=" نوێترین وتار و هەواڵی تەکنەلۆژیی کوردی" />
+          <meta property="og:description" content="‌‌ئاگاداربه‌ له‌ دواین هه‌واڵه‌ ته‌كنه‌لۆژیه‌كان كه‌ به‌ زمانی كوردی بڵاوده‌كرێنه‌وه‌، خوێنه‌ری بابه‌ته‌كانت زیاد بكه‌ له‌رێگه‌ی ئه‌م ماڵپه‌ره‌وه" />
+          <meta property="og:type" content="website" />
+          <meta property="og:title" content="نوێترین وتار و هەواڵی تەکنەلۆژیی کوردی" />
+          <meta property="og:image" content="https://ewr1.vultrobjects.com/news-devs-krd/news-newspapers-ss-1920.jpg" />
+          <meta property="twitter:card" content="summary_large_image" />
+          <meta property="twitter:url" content="https://newsdevs.krd/" />
+          <meta property="twitter:title" content="نوێترین وتار و هەواڵی تەکنەلۆژیی کوردی" />
+          <meta property="twitter:description" content="ئاگاداربه‌ له‌ دواین هه‌واڵه‌ ته‌كنه‌لۆژیه‌كان كه‌ به‌ زمانی كوردی بڵاوده‌كرێنه‌وه‌، خوێنه‌ری بابه‌ته‌كانت زیاد بكه‌ له‌رێگه‌ی ئه‌م ماڵپه‌ره‌وه" />
+          <meta property="twitter:image" content="https://ewr1.vultrobjects.com/news-devs-krd/news-newspapers-ss-1920.jpg" />
+          <script async src="https://www.googletagmanager.com/gtag/js?id=UA-77029418-4" />
+          <script dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', 'UA-77029418-4');
+                `,
+          }}
+          />
+
+        </Head>
         <Modal
           visible={loginModalVisible}
           centered
