@@ -47,7 +47,7 @@ class MyPostGrid extends React.Component {
               <>
                 <Row style={{ marginTop: 10 }} gutter={[10, 10]}>
                   {data.map((d) => (
-                    <Col span={8} key={uniqid()}>
+                    <Col xs={24} sm={24} md={8} lg={8} key={uniqid()}>
                       <Popover content={(
                         <Popconfirm
                           title="دڵنیای له‌ سرینه‌وه‌ی پۆست؟ هیچ رێگایه‌ك نیه‌ بۆ گه‌راندنه‌وه‌"
@@ -67,7 +67,7 @@ class MyPostGrid extends React.Component {
                   {data.length <= 0 ? <Col span={24}><Empty description="هیچ به‌سته‌رێك نه‌دۆزرایه‌وه‌" /></Col> : null}
                 </Row>
                 <Row style={{ marginTop: 10 }} gutter={[10, 10]}>
-                  <Col style={{ textAlign: 'center' }} span={12}>
+                  <Col style={{ textAlign: 'center' }} xs={12} sm={12} md={12} lg={12}>
                     <Link href={`?page=${ctx.page + 1}${searchQueryCtx !== null && searchQueryCtx.page ? '' : `&q=${searchQueryCtx}`}`}>
                       <a style={{ display: ctx.page + 1 > ctx.totalPages ? 'none' : 'initial' }}>
                         <ArrowRightOutlined />
@@ -75,7 +75,7 @@ class MyPostGrid extends React.Component {
                       </a>
                     </Link>
                   </Col>
-                  <Col style={{ textAlign: 'center' }} span={12}>
+                  <Col style={{ textAlign: 'center' }} xs={12} sm={12} md={12} lg={12}>
                     <Link href={`?page=${ctx.page - 1}${searchQueryCtx !== null && searchQueryCtx.page ? '' : `&q=${searchQueryCtx}`}`}>
                       <a style={{ display: ctx.page <= 1 ? 'none' : 'initial' }}>
                         <span>نوێتر</span>

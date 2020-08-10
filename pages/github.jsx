@@ -18,7 +18,7 @@ class Github extends React.Component {
     const { publishers } = this.props;
     return (
       <PopulerPublishers.Provider value={publishers}>
-        <div style={{ padding: 40 }}>
+        <div style={{ padding: '1.1em' }}>
           <Layout containerStyle={{ padding: 25 }}>
             <Typography.Title>
               <GithubOutlined />

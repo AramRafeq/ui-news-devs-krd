@@ -37,6 +37,7 @@ class Login extends React.Component {
             try {
               const { toggleModal } = this.props;
               toggleModal();
+              this.form.current.resetFields();
             } catch (e) {
             // who cares
             }

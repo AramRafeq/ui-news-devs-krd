@@ -42,6 +42,8 @@ class Register extends React.Component {
               username: values.username,
               password: values.password,
             });
+            this.setState(this.initialState());
+            this.form.current.resetFields();
           }
         });
     };
@@ -83,7 +85,7 @@ class Register extends React.Component {
       <>
         <Form ref={this.form} layout="vertical" onFinish={this.onFinish}>
           <Row gutter={(10)}>
-            <Col span={12}>
+            <Col xs={24} sm={24} md={12} lg={12}>
               <Form.Item
                 label="ناوی به‌كارهێنه‌ر"
                 name="username"
@@ -97,7 +99,7 @@ class Register extends React.Component {
                 <Input style={{ borderRadius: 6 }} />
               </Form.Item>
             </Col>
-            <Col span={12}>
+            <Col xs={24} sm={24} md={12} lg={12}>
               <Form.Item
                 label="نازناو"
                 name="display_name"
@@ -113,7 +115,7 @@ class Register extends React.Component {
             </Col>
           </Row>
           <Row gutter={(10)}>
-            <Col span={12}>
+            <Col xs={24} sm={24} md={12} lg={12}>
               <Form.Item
                 label="به‌سته‌ری ماڵپه‌ر"
                 name="website_url"
@@ -124,7 +126,7 @@ class Register extends React.Component {
                 <Input style={{ borderRadius: 6 }} />
               </Form.Item>
             </Col>
-            <Col span={12}>
+            <Col xs={24} sm={24} md={12} lg={12}>
               <Form.Item
                 label="به‌سته‌ری RSS ی ماڵپه‌ره‌كه‌ت"
                 name="rssfeed_url"
@@ -137,7 +139,7 @@ class Register extends React.Component {
             </Col>
           </Row>
           <Row gutter={(10)}>
-            <Col span={12}>
+            <Col xs={24} sm={24} md={12} lg={12}>
               <Form.Item
                 name="password"
                 label="تێپه‌ره‌وشه‌"
@@ -153,7 +155,7 @@ class Register extends React.Component {
               </Form.Item>
 
             </Col>
-            <Col span={12}>
+            <Col xs={24} sm={24} md={12} lg={12}>
               <Form.Item
                 name="password_retype"
                 label="دوباره‌ی تێپه‌ره‌وشه‌"
@@ -179,7 +181,7 @@ class Register extends React.Component {
             </Col>
           </Row>
           <Row gutter={(10)}>
-            <Col span={12}>
+            <Col xs={24} sm={24} md={12} lg={12}>
               <Form.Item
                 label="پۆستی ێه‌لیكترۆنی"
                 name="email"
@@ -190,11 +192,11 @@ class Register extends React.Component {
                 <Input style={{ borderRadius: 6 }} />
               </Form.Item>
             </Col>
-            <Col span={12} style={{ paddingTop: 15 }}>
+            <Col xs={24} sm={24} md={12} lg={12} style={{ paddingTop: 15 }}>
               <Base64Uploader callbackFunction={this.imagePickerChanged} style={{ borderRadius: 7 }} text="وێنه‌ی پرۆفایل" removeText="بسره‌وه‌" />
             </Col>
           </Row>
-          <Form.Item>
+          <Form.Item style={{ paddingTop: 15 }}>
             <Button loading={saving} htmlType="submit" style={{ background: '#2b2c34' }} type="primary">خۆتۆماركردن</Button>
           </Form.Item>
         </Form>

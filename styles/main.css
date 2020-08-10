@@ -2,9 +2,50 @@ body{
     /* font-family: 'main-font'; */
     background: white;
 }
+@media all and (max-width : 768px) {
+    .main-content {
+        padding-top: 0px !important;
+    }
+    .main-content .right-sidebar-container{
+        padding-top: 0px !important;
+    }
+    .slide-description{
+        font-size: 0.9em !important;
+    }
+    .header-txt{
+        display: grid;
+    }
+    .navlink-row{
+        /* text-align: center; */
+        font-size: 0.6em !important;
+    }
+    .mobile-menu{
+        display: block !important;
+    }
+    .reguller-menu{
+        display: none !important;
+    }
+    .header-row{
+        margin-top: 10px !important;
+    }
+}
+.header-row{
+    margin-top: 20px;
+}
+.mobile-menu{
+    display:none;
+}
+.ant-collapse-item{
+    font-size: 1.35em;
+    margin-bottom: 10px;
+}
 .header-txt{
     text-align: center;
     font-family: 'main-font' !important;
+    font-size: 1.5rem;
+}
+.header-txt span a{
+    color: white;
 }
 .profile-setting-row{
     margin-bottom: 5px;

@@ -64,6 +64,7 @@ class Slide extends React.Component {
         <h2 style={{
           textAlign: 'right',
           position: 'relative',
+          fontSize: '1.5em',
           marginTop: -70,
           zIndex: 3,
           color: 'white',
@@ -88,15 +89,17 @@ class Slide extends React.Component {
           &nbsp;
           {data.title}
         </h2>
-        <p style={{
-          position: 'relative',
-          zIndex: 33,
-          padding: 20,
-          color: 'white',
-          fontSize: 17,
-          textAlign: 'right',
-          marginTop: -185,
-        }}
+        <p
+          className="slide-description"
+          style={{
+            position: 'relative',
+            zIndex: 33,
+            padding: 20,
+            color: 'white',
+            textAlign: 'right',
+            marginTop: -185,
+            fontSize: '1.2em',
+          }}
         >
           {`${data.desc.substr(0, 350)} ${data.desc.length >= 350 ? '...' : ''}`}
         </p>

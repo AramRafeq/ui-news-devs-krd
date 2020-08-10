@@ -176,8 +176,8 @@ class Header extends React.Component {
           }}
           />
         </Modal>
-        <Row justify="center" gutter={(25)}>
-          <Col span={6}>
+        <Row justify="center" gutter={(25)} className="header-row">
+          <Col xs={24} sm={24} md={6} lg={6}>
             <Popover placement="bottomRight" content={profileDropdownContent} trigger="hover">
               {(userStore.value.verified)
                 ? (
@@ -209,24 +209,23 @@ class Header extends React.Component {
               }
             </Popover>
           </Col>
-          <Col span={12}>
+          <Col xs={24} sm={24} md={12} lg={12}>
             <h1 className="header-txt">
-              <span>دواین هه‌واڵی ته‌كنه‌لۆجی</span>
-              &nbsp;
+              <span>نوێترین وتار و هەواڵی تەکنەلۆژیی کوردی&nbsp;</span>
               <span style={{
                 backgroundColor: '#2b2c34',
                 margin: 15,
                 color: 'white',
-                fontSize: 15,
+                fontSize: '1rem',
                 padding: 5,
                 borderRadius: 7,
               }}
               >
-                ناوه‌ندی گه‌شه‌پێده‌ران
+                <a href="https://devstree.io">دره‌ختی گه‌شه‌پێده‌ران</a>
               </span>
             </h1>
           </Col>
-          <Col span={6} align="center">
+          <Col xs={24} sm={24} md={6} lg={6} align="center">
             <SearchQuery.Consumer>
               {(ctx) => (
                 <Form onFinish={this.onFinish}>

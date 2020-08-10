@@ -90,7 +90,7 @@ class UpdateProfile extends React.Component {
       <AuthGuard>
         <Form ref={this.form} layout="vertical" onFinish={this.onFinish}>
           <Row gutter={(10)}>
-            <Col span={12}>
+            <Col xs={24} sm={24} md={12} lg={12}>
               <Form.Item
                 label="ناوی به‌كارهێنه‌ر"
                 name="username"
@@ -98,7 +98,7 @@ class UpdateProfile extends React.Component {
                 <Input disabled style={{ borderRadius: 6 }} />
               </Form.Item>
             </Col>
-            <Col span={12}>
+            <Col xs={24} sm={24} md={12} lg={12}>
               <Form.Item
                 label="نازناو"
                 name="display_name"
@@ -114,7 +114,7 @@ class UpdateProfile extends React.Component {
             </Col>
           </Row>
           <Row gutter={(10)}>
-            <Col span={12}>
+            <Col xs={24} sm={24} md={12} lg={12}>
               <Form.Item
                 label="به‌سته‌ری ماڵپه‌ر"
                 name="website_url"
@@ -125,7 +125,7 @@ class UpdateProfile extends React.Component {
                 <Input style={{ borderRadius: 6 }} />
               </Form.Item>
             </Col>
-            <Col span={12}>
+            <Col xs={24} sm={24} md={12} lg={12}>
               <Form.Item
                 label="به‌سته‌ری RSS ی ماڵپه‌ره‌كه‌ت"
                 name="rssfeed_url"
@@ -138,7 +138,7 @@ class UpdateProfile extends React.Component {
             </Col>
           </Row>
           <Row gutter={(10)}>
-            <Col span={12}>
+            <Col xs={24} sm={24} md={12} lg={12}>
               <Form.Item
                 name="password"
                 label="تێپه‌ره‌وشه‌"
@@ -154,7 +154,7 @@ class UpdateProfile extends React.Component {
               </Form.Item>
 
             </Col>
-            <Col span={12}>
+            <Col xs={24} sm={24} md={12} lg={12}>
               <Form.Item
                 name="password_retype"
                 label="دوباره‌ی تێپه‌ره‌وشه‌"
@@ -180,7 +180,7 @@ class UpdateProfile extends React.Component {
             </Col>
           </Row>
           <Row gutter={(10)}>
-            <Col span={12}>
+            <Col xs={24} sm={24} md={12} lg={12}>
               <Form.Item
                 label="پۆستی ێه‌لیكترۆنی"
                 name="email"
@@ -191,7 +191,7 @@ class UpdateProfile extends React.Component {
                 <Input style={{ borderRadius: 6 }} />
               </Form.Item>
             </Col>
-            <Col span={12} style={{ paddingTop: 15 }}>
+            <Col xs={24} sm={24} md={12} lg={12} style={{ paddingTop: 15 }}>
               <Base64Uploader file={`${process.env.NEXT_PUBLIC_AWS_ENDPOINT}/${userStore.value.profile}`} callbackFunction={this.imagePickerChanged} style={{ borderRadius: 7 }} text="وێنه‌ی پرۆفایل" removeText="بسره‌وه‌" />
             </Col>
           </Row>

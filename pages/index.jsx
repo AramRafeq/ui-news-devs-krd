@@ -19,7 +19,7 @@ class Index extends React.Component {
       publishers, links, page, totalPages,
     } = this.props;
     return (
-      <div style={{ padding: 40 }}>
+      <div style={{ padding: '1.1em' }}>
         <Page.Provider value={{ page, totalPages }}>
           <PopulerPublishers.Provider value={publishers}>
             <Layout>

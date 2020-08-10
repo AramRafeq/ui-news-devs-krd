@@ -25,7 +25,7 @@ class MyPosts extends React.Component {
       Router.push('/');
     }
     return (
-      <div style={{ padding: 40 }}>
+      <div style={{ padding: '1.1em' }}>
         <Page.Provider value={{ page, totalPages }}>
           <Layout hideLeftSidebar>
             <h1>پۆسته‌كانم</h1>

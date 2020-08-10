@@ -48,7 +48,13 @@ class PostGrid extends React.Component {
 
     return (
       <Card
-        cover={<div style={{ padding: 6 }}><img style={{ width: '100%', borderRadius: 7 }} alt="test" src={validURL(data.thumbnail) ? data.thumbnail : postCoverUrl} /></div>}
+        cover={(
+          <div style={{ padding: 6 }}>
+            <a href={data.url} rel="noreferrer" target="_blank" label={data.title}>
+              <img style={{ width: '100%', borderRadius: 7 }} alt="test" src={validURL(data.thumbnail) ? data.thumbnail : postCoverUrl} />
+            </a>
+          </div>
+        )}
         headStyle={{ background: 'red' }}
         actions={[
           <div className="post-card-fav" onClick={() => this.upVote(data.id)}>

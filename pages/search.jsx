@@ -18,7 +18,7 @@ class Search extends React.Component {
       links, page, totalPages, searchQuery,
     } = this.props;
     return (
-      <div style={{ padding: 40 }}>
+      <div style={{ padding: '1.1em' }}>
         <SearchQuery.Provider value={searchQuery}>
           <Page.Provider value={{ page, totalPages }}>
             <Layout hideLeftSidebar>

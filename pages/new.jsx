@@ -9,7 +9,7 @@ moment.locale('ku');
 class New extends React.Component {
   render() {
     return (
-      <div style={{ padding: 40 }}>
+      <div style={{ padding: '1.1em' }}>
         <Layout hideLeftSidebar containerStyle={{ padding: 25 }}>
           <h1>به‌سته‌ری نوێ  بنێره‌</h1>
           <NewPost />

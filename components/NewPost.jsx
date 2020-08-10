@@ -71,7 +71,7 @@ class NewPost extends React.Component {
         {' '}
         <Form layout="vertical" onFinish={this.onFinish} ref={this.form}>
           <Row gutter={(10)}>
-            <Col span={18}>
+            <Col xs={24} sm={24} md={18} lg={18}>
               <Form.Item
                 label="سه‌ردێر"
                 name="title"
@@ -90,7 +90,7 @@ class NewPost extends React.Component {
                 <Input style={{ borderRadius: 6 }} />
               </Form.Item>
             </Col>
-            <Col span={6}>
+            <Col xs={24} sm={24} md={6} lg={6}>
               <Form.Item
                 label="به‌رواری  بابه‌ت"
                 name="post_date"
@@ -107,7 +107,7 @@ class NewPost extends React.Component {
           </Row>
 
           <Row gutter={[10, 10]}>
-            <Col span={18}>
+            <Col xs={24} sm={24} md={18} lg={18}>
               <Form.Item
                 label="به‌سته‌ر"
                 name="url"
@@ -125,12 +125,12 @@ class NewPost extends React.Component {
                 <Input style={{ borderRadius: 6 }} />
               </Form.Item>
             </Col>
-            <Col span={6} style={{ paddingTop: 20 }}>
+            <Col xs={24} sm={24} md={6} lg={6} style={{ paddingTop: 20 }}>
               <Base64Uploader callbackFunction={this.imagePickerChanged} style={{ borderRadius: 7 }} text="وێنه‌یه‌ك هه‌ڵبژێره‌" removeText="بسره‌وه‌" />
             </Col>
           </Row>
           <Row>
-            <Col span={24}>
+            <Col xs={24} sm={24} md={24} lg={24}>
               <Form.Item
                 label="كورته‌ی بابه‌ت"
                 name="desc"

@@ -21,14 +21,14 @@ class Slide extends React.Component {
               <>
                 <Row style={{ marginTop: 10 }} gutter={[10, 10]}>
                   {data.map((d) => (
-                    <Col span={12} key={uniqid()}>
+                    <Col xs={24} sm={24} md={12} lg={12} key={uniqid()}>
                       <PostCard data={d} key={uniqid()} />
                     </Col>
                   ))}
                   {data.length <= 0 ? <Col span={24}><Empty description="هیچ به‌سته‌رێك نه‌دۆزرایه‌وه‌" /></Col> : null}
                 </Row>
                 <Row style={{ marginTop: 10 }} gutter={[10, 10]}>
-                  <Col style={{ textAlign: 'center' }} span={12}>
+                  <Col style={{ textAlign: 'center' }} xs={12} sm={12} md={12} lg={12}>
                     <Link href={`?page=${ctx.page + 1}${searchQueryCtx !== null && searchQueryCtx.page ? '' : `&q=${searchQueryCtx}`}`}>
                       <a style={{ display: ctx.page + 1 > ctx.totalPages ? 'none' : 'initial' }}>
                         <ArrowRightOutlined />
@@ -36,7 +36,7 @@ class Slide extends React.Component {
                       </a>
                     </Link>
                   </Col>
-                  <Col style={{ textAlign: 'center' }} span={12}>
+                  <Col style={{ textAlign: 'center' }} xs={12} sm={12} md={12} lg={12}>
                     <Link href={`?page=${ctx.page - 1}${searchQueryCtx !== null && searchQueryCtx.page ? '' : `&q=${searchQueryCtx}`}`}>
                       <a style={{ display: ctx.page <= 1 ? 'none' : 'initial' }}>
                         <span>نوێتر</span>
