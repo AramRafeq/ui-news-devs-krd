@@ -14,7 +14,6 @@ class New extends React.Component {
           <h1>به‌سته‌ری نوێ  بنێره‌</h1>
           <NewPost />
         </Layout>
-
       </div>
     );
   }
