@@ -173,7 +173,6 @@ class Header extends React.Component {
                 `,
           }}
           />
-
         </Head>
         <Modal
           visible={loginModalVisible}
