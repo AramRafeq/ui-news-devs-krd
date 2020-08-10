@@ -51,7 +51,7 @@ class PostGrid extends React.Component {
         cover={(
           <div style={{ padding: 6 }}>
             <a href={data.url} rel="noreferrer" target="_blank" label={data.title}>
-              <img style={{ width: '100%', borderRadius: 7 }} alt="test" src={validURL(data.thumbnail) ? data.thumbnail : postCoverUrl} />
+              <img style={{ width: '100%', borderRadius: 7 }} alt={data.title} src={validURL(data.thumbnail) ? data.thumbnail : postCoverUrl} />
             </a>
           </div>
         )}
@@ -79,8 +79,12 @@ class PostGrid extends React.Component {
         ]}
       >
         <Card.Meta
-          title={
-            data.title
+          title={(
+            <Popover content={data.title}>
+
+              {data.title}
+            </Popover>
+          )
             // <a href={data.url} rel="noreferrer" target="_blank" alt={data.title}>{data.title}</a>
           }
           description={data.desc}

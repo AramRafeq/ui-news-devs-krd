@@ -8,7 +8,7 @@
 }
 h2, .header-txt, h1, .ant-card-meta-title, .ant-card-head-title, .ant-list-item-meta-content
 , .ant-modal-title, .ant-form-item-label, input, textarea, .ant-form-item-explain div,
-.ant-collapse-item
+.ant-collapse-item, .ant-popover-inner-content
 {
     font-family: 'main-font';
 }

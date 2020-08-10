@@ -98,7 +98,7 @@ class Slide extends React.Component {
             color: 'white',
             textAlign: 'right',
             marginTop: -185,
-            fontSize: '1.2em',
+            fontSize: '1.1em',
           }}
         >
           {`${data.desc.substr(0, 350)} ${data.desc.length >= 350 ? '...' : ''}`}

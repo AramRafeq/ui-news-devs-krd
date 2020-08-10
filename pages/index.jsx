@@ -49,7 +49,7 @@ export async function getServerSideProps(ctx) {
       limit: 10,
       offset: 0,
     });
-  const defualtNewsLimit = 14;
+  const defualtNewsLimit = 15;
   let page = 1;
   try {
     page = parseInt(ctx.query.page || page, 10);
