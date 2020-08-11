@@ -81,13 +81,19 @@ class PostGrid extends React.Component {
         <Card.Meta
           title={(
             <Popover content={data.title}>
-
               {data.title}
             </Popover>
-          )
-            // <a href={data.url} rel="noreferrer" target="_blank" alt={data.title}>{data.title}</a>
-          }
-          description={data.desc}
+          )}
+          description={(
+            <Typography.Paragraph ellipsis={{
+              rows: 2,
+              expandable: true,
+              symbol: 'زیاتر ببینه‌',
+            }}
+            >
+              {data.desc}
+            </Typography.Paragraph>
+          )}
         />
       </Card>
     );

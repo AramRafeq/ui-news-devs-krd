@@ -89,6 +89,7 @@ class Slide extends React.Component {
           &nbsp;
           {data.title}
         </h2>
+
         <p
           className="slide-description"
           style={{
