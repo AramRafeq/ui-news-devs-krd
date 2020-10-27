@@ -12,6 +12,7 @@ import {
   LinkOutlined,
 } from '@ant-design/icons';
 import { observer, inject } from 'mobx-react';
+import jsStringEscape from 'js-string-escape';
 import superagent from '../helpers/superagent';
 import validURL from '../helpers/validURL';
 
@@ -85,13 +86,8 @@ class PostGrid extends React.Component {
             </Popover>
           )}
           description={(
-            <Typography.Paragraph ellipsis={{
-              rows: 2,
-              expandable: true,
-              symbol: 'زیاتر ببینه‌',
-            }}
-            >
-              {data.desc}
+            <Typography.Paragraph>
+              {`${(data.desc).substr(0,200)} ${data.desc.length > 200 ? '[...]': ''}`}
             </Typography.Paragraph>
           )}
         />
