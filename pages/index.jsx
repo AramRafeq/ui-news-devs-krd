@@ -11,8 +11,8 @@ import Page from '../components/context/page';
 
 moment.locale('ku');
 
-@inject('userStore', 'tokenStore')
 @observer
+@inject('userStore', 'tokenStore')
 class Index extends React.Component {
   render() {
     const {
