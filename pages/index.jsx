@@ -49,6 +49,7 @@ export async function getServerSideProps(ctx) {
       limit: 10,
       offset: 0,
     });
+    console.log(publisherRes)
   const defualtNewsLimit = 15;
   let page = 1;
   try {
