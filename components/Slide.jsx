@@ -63,6 +63,7 @@ class Slide extends React.Component {
         />
         <h2 style={{
           textAlign: 'right',
+          direction: 'rtl',
           position: 'relative',
           fontSize: '1.5em',
           marginTop: -70,
@@ -73,7 +74,9 @@ class Slide extends React.Component {
         }}
         >
 
-          &nbsp;
+         
+          {data.title}
+           &nbsp;
           <a style={{ color: 'white' }} rel="noreferrer" target="_blank" href={`https://twitter.com/share?text=${data.title}&url=${data.url}&hashtags=devskrd,kurddevelopers,${data.publisher_name},devstree,درەختی_گەشەپێدەران,گەشەپێدەرانی_کورد,devstree_io`} label={data.title}><TwitterOutlined key="twitter" /></a>
           &nbsp;
           <a style={{ color: 'white' }} rel="noreferrer" target="_blank" href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(data.url)}`} label={data.title}><FacebookOutlined /></a>
@@ -87,13 +90,13 @@ class Slide extends React.Component {
             <FireOutlined key="fav" />
           </span>
           &nbsp;
-          {data.title}
         </h2>
 
         <p
           className="slide-description"
           style={{
             position: 'relative',
+            direction: 'rtl',
             zIndex: 33,
             padding: 20,
             color: 'white',
